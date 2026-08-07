@@ -1,17 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { archiveNav, branding, contact, links, nav, orgs, social } from '../lib/data';
+import { branding, contact, links, nav, orgs, profile, social } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
-import { vatika } from '../lib/vatika';
 import LanguageSwitcher from './LanguageSwitcher';
 import SocialIcons from './SocialIcons';
 import { useLanguage } from './LanguageProvider';
 
 export default function SiteFooter() {
   const { t } = useLanguage();
-  const primaryNav = nav.filter((item) => !item.external).slice(0, 8);
-  const secondaryNav = archiveNav.filter((item) => !item.external).slice(0, 6);
+  const internalNav = nav.filter((item) => !item.external).slice(0, 7);
 
   return (
     <footer className="site-footer">
@@ -19,21 +17,14 @@ export default function SiteFooter() {
         <div>
           <div className="footer-brand-row">
             <img
-              src={branding.ky21cLogo}
-              alt={branding.ky21cLogoAlt}
-              width={56}
-              height={56}
-              className="footer-bks-logo"
-            />
-            <img
               src={branding.bksLogo}
               alt={branding.bksLogoAlt}
-              width={56}
-              height={56}
+              width={64}
+              height={64}
               className="footer-bks-logo"
             />
             <div>
-              <p className="footer-name">{vatika.name}</p>
+              <p className="footer-name">{profile.name}</p>
               <p className="footer-hi">{t.hero.nameLocal}</p>
               <p className="footer-tag">{t.hero.shortTitle}</p>
             </div>
@@ -54,10 +45,10 @@ export default function SiteFooter() {
             </a>
           </p>
           <p className="mt-3 text-sm text-[rgba(232,217,168,0.85)]">
-            Joint initiative of KY21C and Bharatiya Krishak Samaj
+            {t.contact.office}: {contact.office}
           </p>
           <p className="text-sm text-[rgba(232,217,168,0.75)]">
-            {t.contact.office}: {contact.office}
+            {t.contact.residence}: {contact.residence}
           </p>
           <div className="mt-5">
             <SocialIcons items={social} className="social-icons-footer" />
@@ -71,7 +62,7 @@ export default function SiteFooter() {
           <div>
             <p className="footer-label">{t.footer.explore}</p>
             <ul>
-              {primaryNav.map((item) => {
+              {internalNav.map((item) => {
                 const key = navKeyFromHref(item.href);
                 return (
                   <li key={item.href}>
@@ -79,19 +70,11 @@ export default function SiteFooter() {
                   </li>
                 );
               })}
-              <li>
-                <Link href="/donate">{t.cta.donateNow || 'Donate'}</Link>
-              </li>
             </ul>
           </div>
           <div>
-            <p className="footer-label">Heritage &amp; leadership</p>
+            <p className="footer-label">{t.footer.connect}</p>
             <ul>
-              {secondaryNav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
               <li>
                 <a href={links.bksOfficial} target="_blank" rel="noopener noreferrer">
                   {t.nav.bksExternal || links.bksOfficialLabel}
@@ -125,7 +108,7 @@ export default function SiteFooter() {
 
       <div className="wrap footer-bottom">
         <p>
-          {vatika.fullTitle} · Joint Initiative of KY21C &amp; BKS
+          {profile.name} · {profile.qualifications} · {t.hero.shortTitle}
         </p>
         <p className="mt-2 text-sm opacity-70">
           <a href={contact.mapLink} target="_blank" rel="noopener noreferrer">

@@ -4,11 +4,10 @@ import { LanguageProvider } from '../components/LanguageProvider';
 import LanguageBar from '../components/LanguageBar';
 import SiteFooter from '../components/SiteFooter';
 import SiteNav from '../components/SiteNav';
-import { vatika } from '../lib/vatika';
+import { profile } from '../lib/data';
 import {
   SITE_URL,
   absoluteUrl,
-  bksOrganizationJsonLd,
   localBusinessJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -19,7 +18,7 @@ const ogImage = {
   url: absoluteUrl('/og-default.png'),
   width: 1200,
   height: 630,
-  alt: `${vatika.name} — Tree Plantation & Sponsorship`,
+  alt: `${profile.name} — Leadership in Indian Agriculture`,
 };
 
 export const viewport = {
@@ -30,24 +29,24 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${vatika.name} — Tree Plantation & Sponsorship | KY21C × BKS`,
-    template: `%s · ${vatika.name}`,
+    default: `${profile.name} — ${profile.shortTitle}`,
+    template: `%s · ${profile.name}`,
   },
-  description: vatika.purpose,
-  applicationName: 'KarmYog Vatika',
-  authors: [{ name: vatika.name, url: SITE_URL }],
-  creator: vatika.name,
-  publisher: vatika.name,
+  description: profile.summary,
+  applicationName: 'krishan-bir-chaudhary',
+  authors: [{ name: profile.name, url: SITE_URL }],
+  creator: profile.name,
+  publisher: profile.name,
   keywords: [
-    'KarmYog Vatika',
-    'tree plantation',
-    'tree sponsorship',
-    'KarmYog for the 21st Century',
+    'Krishan Bir Chaudhary',
     'Bharatiya Krishak Samaj',
-    'KY21C',
-    'Kaam to Karm',
-    'donate trees India',
-    'environmental NGO',
+    'Bharat Krishak Samaj',
+    'MSP committee',
+    'Indian farmers',
+    'seed sovereignty',
+    'Kisan Ki Awaaz',
+    'natural farming',
+    'Panjabrao Deshmukh',
   ],
   alternates: { canonical: SITE_URL },
   robots: {
@@ -63,22 +62,22 @@ export const metadata = {
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
-    title: vatika.name,
+    title: profile.name,
     statusBarStyle: 'default',
   },
   openGraph: {
-    title: vatika.fullTitle,
-    description: vatika.purpose,
+    title: profile.name,
+    description: profile.tagline,
     url: SITE_URL,
-    siteName: vatika.name,
+    siteName: profile.name,
     locale: 'en_IN',
     type: 'website',
     images: [ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: vatika.fullTitle,
-    description: vatika.tagline,
+    title: profile.name,
+    description: profile.tagline,
     creator: '@DrKrishanBir',
     site: '@DrKrishanBir',
     images: [absoluteUrl('/og-default.png')],
@@ -99,9 +98,8 @@ export default function RootLayout({ children }) {
         <JsonLd
           data={[
             websiteJsonLd(),
-            organizationJsonLd(),
-            bksOrganizationJsonLd(),
             personJsonLd(),
+            organizationJsonLd(),
             localBusinessJsonLd(),
           ]}
         />

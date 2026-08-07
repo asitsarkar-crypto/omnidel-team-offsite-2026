@@ -1,11 +1,11 @@
 import { SITE_NAME, SITE_URL } from '../lib/seo';
-import { vatika } from '../lib/vatika';
 
 export default function manifest() {
   return {
-    name: vatika.fullTitle,
-    short_name: vatika.name,
-    description: vatika.purpose,
+    name: `${SITE_NAME} — Bharatiya Krishak Samaj`,
+    short_name: 'Krishan Bir',
+    description:
+      'Official portfolio of Krishan Bir Chaudhary — President, Bharatiya Krishak Samaj.',
     start_url: '/',
     display: 'standalone',
     background_color: '#f4f6f2',
@@ -25,7 +25,7 @@ export default function manifest() {
       },
     ],
     related_applications: [],
-    categories: ['lifestyle', 'education', 'environment'],
+    categories: ['news', 'government', 'education'],
     id: SITE_URL,
   };
 }
