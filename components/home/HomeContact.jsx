@@ -63,9 +63,7 @@ export default function HomeContact() {
         <Reveal className="mb-8">
           <p className="kicker">Social</p>
           <SocialIcons items={social} />
-          <p className="mt-3 text-sm text-[var(--muted)]">
-            @karmyogvatika · YouTube KarmYog for 21st Century · Facebook KY21C
-          </p>
+          <p className="mt-3 text-sm text-[var(--muted)]">{t.campaign.socialNote}</p>
         </Reveal>
 
         <Reveal className="mb-10 overflow-hidden rounded-md border border-[var(--stroke)]">

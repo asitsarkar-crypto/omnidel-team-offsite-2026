@@ -1,17 +1,20 @@
+'use client';
+
 import Reveal from '../Reveal';
 import { vatikaTestimonials } from '../../lib/vatika';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeTestimonialsVatika() {
+  const { t } = useLanguage();
+  const c = t.campaign.trust;
+
   return (
     <section className="band muted-band" aria-labelledby="testimonials-title">
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="kicker">Trust</p>
-          <h2 id="testimonials-title">Voices that stand with this work</h2>
-          <p className="section-deck">
-            Institutional confidence behind Bharatiya Krishak Samaj leadership — the heritage that
-            anchors this joint plantation initiative.
-          </p>
+          <p className="kicker">{c.kicker}</p>
+          <h2 id="testimonials-title">{c.title}</h2>
+          <p className="section-deck">{c.deck}</p>
         </Reveal>
         <div className="testimonial-grid">
           {vatikaTestimonials.map((item, i) => (

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { seedSponsor, vatika } from '../../lib/vatika';
+import { vatika } from '../../lib/vatika';
 import { useLanguage } from '../LanguageProvider';
 
 /**
@@ -10,9 +10,10 @@ import { useLanguage } from '../LanguageProvider';
  */
 export default function CampaignHero() {
   const { t } = useLanguage();
+  const c = t.campaign;
 
   return (
-    <section className="hero" aria-label="BKS KY21C Plantation Drive">
+    <section className="hero" aria-label={vatika.name}>
       <div className="hero-layers" aria-hidden="true">
         <div
           className="hero-photo"
@@ -25,23 +26,20 @@ export default function CampaignHero() {
       </div>
 
       <div className="hero-content wrap">
-        <p className="hero-kicker animate-rise">Joint Initiative · KY21C × BKS</p>
+        <p className="hero-kicker animate-rise">{c.heroKicker}</p>
         <p className="hero-brand animate-rise delay-1">{vatika.name}</p>
-        <h1 className="animate-rise delay-2">Kaam to Karm — plant trust, grow a greener India.</h1>
-        <p className="hero-lead animate-rise delay-3">
-          Tree Plantation &amp; Sponsorship Platform — a collaborative effort of KarmYog for the 21st
-          Century and Bharatiya Krishak Samaj.
-        </p>
-        <p className="hero-seed animate-rise delay-3">{seedSponsor.headline}</p>
+        <h1 className="animate-rise delay-2">{c.heroTitle}</h1>
+        <p className="hero-lead animate-rise delay-3">{c.heroLead}</p>
+        <p className="hero-seed animate-rise delay-3">{c.seed.headline}</p>
         <div className="hero-actions animate-rise delay-4">
           <Link className="btn btn-solid" href="/plant">
-            Plant a Tree
+            {t.cta.getStarted}
           </Link>
           <Link className="btn btn-line" href="/donate">
-            Donate Now
+            {t.cta.donateNow}
           </Link>
           <Link className="btn btn-line" href="/heritage">
-            Heritage
+            {t.nav.heritage}
           </Link>
         </div>
       </div>

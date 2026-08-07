@@ -1,17 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 import { contact, enquiryServices, googleFormUrl } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 /**
- * Embeds a Google Form when `googleFormUrl` is set in lib/data.js.
+ * Embeds a Google Form when `googleFormUrl` is set.
  * When unset, shows a compact contact path — never a giant empty iframe box.
  */
-export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
+export default function GoogleFormEmbed({ title }) {
+  const { t } = useLanguage();
+  const heading = title || t.contact.enquiry;
+  const c = t.campaign;
+
   if (googleFormUrl) {
     return (
       <div className="enquiry-panel enquiry-panel-live">
-        <h3 className="enquiry-title">{title}</h3>
+        <h3 className="enquiry-title">{heading}</h3>
         <iframe
-          title={title}
+          title={heading}
           src={googleFormUrl}
           className="enquiry-iframe"
           loading="lazy"
@@ -23,21 +30,18 @@ export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
 
   return (
     <div className="enquiry-panel">
-      <h3 className="enquiry-title">{title}</h3>
-      <p className="enquiry-lead">
-        Share your name, organisation, mobile, email, and how you wish to take part — planting,
-        sponsorship, press, or partnership. Reach us directly while the embedded form is prepared.
-      </p>
+      <h3 className="enquiry-title">{heading}</h3>
+      <p className="enquiry-lead">{c.enquiryLead}</p>
 
       <div className="enquiry-actions">
         <Link className="btn btn-solid" href="/plant">
-          Plant a Tree
+          {t.cta.getStarted}
         </Link>
         <Link className="btn btn-line dark" href="/donate">
-          Donate Now
+          {t.cta.donateNow}
         </Link>
         <a className="btn btn-line dark" href={`mailto:${contact.email}`}>
-          Email us
+          {t.contact.email}
         </a>
         <a
           className="btn btn-line dark"
@@ -45,11 +49,11 @@ export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          WhatsApp
+          {t.cta.whatsapp}
         </a>
       </div>
 
-      <h4 className="enquiry-subhead">What to include</h4>
+      <h4 className="enquiry-subhead">{c.enquiryInclude}</h4>
       <ul className="enquiry-fields">
         {['Full Name', 'Organisation', 'Mobile Number', 'Email Address', 'Interest', 'Message'].map(
           (field) => (
@@ -58,7 +62,7 @@ export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
         )}
       </ul>
 
-      <h4 className="enquiry-subhead">Ways to participate</h4>
+      <h4 className="enquiry-subhead">{c.enquiryWays}</h4>
       <ul className="enquiry-tags">
         {enquiryServices.map((service) => (
           <li key={service}>{service}</li>

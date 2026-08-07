@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Reveal from '../Reveal';
 import { formatInr, impactStats } from '../../lib/vatika';
+import { useLanguage } from '../LanguageProvider';
 
 function displayValue(item) {
   if (item.id === 'funds' || item.prefix === '₹') {
@@ -13,6 +14,8 @@ function displayValue(item) {
 }
 
 export default function ImpactCounters({ compact = false }) {
+  const { t } = useLanguage();
+  const c = t.campaign.impact;
   const [stats, setStats] = useState(impactStats);
 
   useEffect(() => {
@@ -43,15 +46,15 @@ export default function ImpactCounters({ compact = false }) {
       <div className="wrap">
         <Reveal className="section-head row-head">
           <div>
-            <p className="kicker">Impact</p>
-            <h2 id="impact-title">Living measures of care</h2>
+            <p className="kicker">{c.kicker}</p>
+            <h2 id="impact-title">{c.title}</h2>
             <p className="section-deck">
-              As of {stats.asOf}. {stats.note}
+              {c.asOf} {stats.asOf}. {c.note}
             </p>
           </div>
           {!compact ? (
             <Link className="btn btn-line dark" href="/impact">
-              Full dashboard
+              {c.dashboard}
             </Link>
           ) : null}
         </Reveal>
@@ -60,8 +63,8 @@ export default function ImpactCounters({ compact = false }) {
           {stats.items.map((item, i) => (
             <Reveal key={item.id} delay={i * 50} className="impact-tile" role="listitem">
               <p className="impact-value">{displayValue(item)}</p>
-              <p className="impact-label">{item.label}</p>
-              {item.hint ? <p className="impact-hint">{item.hint}</p> : null}
+              <p className="impact-label">{c.labels[item.id] || item.label}</p>
+              <p className="impact-hint">{c.hints[item.id] || item.hint}</p>
             </Reveal>
           ))}
         </div>
