@@ -46,9 +46,7 @@ export default function GalleryContent() {
         <div className="wrap page-hero-copy">
           <p className="kicker light">{p.kicker}</p>
           <h1>{p.title}</h1>
-          <p className="page-lead">
-            {gallery.length} {p.leadPrefix}
-          </p>
+          <p className="page-lead">{p.lead || p.leadPrefix}</p>
         </div>
       </section>
 
@@ -56,10 +54,7 @@ export default function GalleryContent() {
         <section key={group.name} className="band">
           <div className="wrap">
             <Reveal className="section-head">
-              <p className="kicker">{group.label}</p>
-              <h2>
-                {group.items.length} {group.items.length === 1 ? p.photo : p.photos}
-              </h2>
+              <h2>{group.label}</h2>
             </Reveal>
             <div className="gallery-grid">
               {group.items.map((item, i) => {
