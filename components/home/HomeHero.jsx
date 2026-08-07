@@ -41,7 +41,7 @@ export default function HomeHero() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t.cta.bookConsult}
+            {t.cta.whatsapp}
           </a>
         </div>
         <p className="animate-rise delay-4 mt-4">

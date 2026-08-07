@@ -12,7 +12,7 @@ export default function HomeFaq() {
   return (
     <section id="faq" className="band faq-band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
       <div className="wrap faq-wrap">
-        <Reveal className="section-head">
+        <Reveal className="section-head faq-head">
           <p className="kicker">{t.faq.kicker}</p>
           <h2>{t.faq.title}</h2>
         </Reveal>
@@ -39,8 +39,17 @@ export default function HomeFaq() {
                     onClick={() => setOpen(isOpen ? -1 : index)}
                   >
                     <span className="faq-q-text">{item.q}</span>
-                    <span className="faq-icon" aria-hidden="true">
-                      {isOpen ? '−' : '+'}
+                    <span className={`faq-icon ${isOpen ? 'is-open' : ''}`} aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+                        <path
+                          d="M12 5v14M5 12h14"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          className="faq-icon-plus"
+                        />
+                      </svg>
                     </span>
                   </button>
                 </h3>

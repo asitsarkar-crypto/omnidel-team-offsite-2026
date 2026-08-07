@@ -58,9 +58,9 @@ export default function SocialIcons({ items, className = '' }) {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={item.label}
+            aria-label={`${item.label}${item.handle ? ` (${item.handle})` : ''}`}
             title={item.label}
-            className="social-icon-link"
+            className={`social-icon-link social-${item.id}`}
           >
             {icons[item.id] || icons.web}
             <span className="sr-only">{item.label}</span>

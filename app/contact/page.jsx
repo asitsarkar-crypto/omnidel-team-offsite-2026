@@ -1,5 +1,6 @@
 import Reveal from '../../components/Reveal';
 import GoogleFormEmbed from '../../components/contact/GoogleFormEmbed';
+import SocialIcons from '../../components/SocialIcons';
 import { contact, featuredMedia, orgs, profile, social } from '../../lib/data';
 import { buildMetadata, pageSeo } from '../../lib/seo';
 
@@ -76,7 +77,7 @@ export default function ContactPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book Free Consultation
+              WhatsApp
             </a>
           </div>
         </div>
@@ -158,6 +159,18 @@ export default function ContactPage() {
       </section>
 
       <section className="band">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Social</p>
+            <h2>Follow on social platforms</h2>
+          </Reveal>
+          <Reveal>
+            <SocialIcons items={social} />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="band muted-band">
         <div className="wrap">
           <Reveal className="section-head">
             <p className="kicker">Directory</p>

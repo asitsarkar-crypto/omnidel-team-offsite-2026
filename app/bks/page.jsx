@@ -204,6 +204,11 @@ export default function BksPage() {
               <p>{kisanBhavan.deveGowda.text}</p>
               <span className="kb-status is-placeholder">{kisanBhavan.deveGowda.status}</span>
             </Reveal>
+            <Reveal as="article" className="kb-card" delay={220}>
+              <h3>Krishan Bir Chaudhary’s role</h3>
+              <p>{kisanBhavan.roleOfKrishanBir.text}</p>
+              <span className="kb-status">{kisanBhavan.roleOfKrishanBir.status}</span>
+            </Reveal>
           </div>
           <div className="kb-photo-grid">
             {kisanBhavan.photos.map((photo) => (
@@ -214,8 +219,8 @@ export default function BksPage() {
             ))}
           </div>
           <Reveal className="mt-8">
-            <Link className="text-link" href="/heritage">
-              Open full heritage storytelling →
+            <Link className="btn btn-solid" href="/heritage#kisan-bhavan">
+              Full Kisan Bhavan story
             </Link>
           </Reveal>
         </div>

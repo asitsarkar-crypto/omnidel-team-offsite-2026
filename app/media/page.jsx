@@ -1,12 +1,21 @@
 import Reveal from '../../components/Reveal';
-import { featuredMedia, press, profile, social, tvChannels } from '../../lib/data';
+import SocialIcons from '../../components/SocialIcons';
+import {
+  featuredMedia,
+  mediaFeatures,
+  press,
+  profile,
+  social,
+  tvChannels,
+} from '../../lib/data';
+import { buildMetadata, pageSeo } from '../../lib/seo';
 
-export const metadata = {
-  title: 'Media',
-  description: `Press, publications, and channels for ${profile.name}.`,
-};
+export const metadata = buildMetadata(pageSeo.media);
 
 export default function MediaPage() {
+  const featured = mediaFeatures[0] || press.find((p) => p.featured);
+  const otherPress = press.filter((p) => !p.featured);
+
   return (
     <>
       <section className="page-hero">
@@ -15,12 +24,94 @@ export default function MediaPage() {
           style={{ backgroundImage: "url('/photos/events/shikhar-panel.png')" }}
         />
         <div className="wrap page-hero-copy">
-          <p className="kicker light">Media</p>
-          <h1>Press, book, magazine, and broadcast</h1>
+          <p className="kicker light">Media Centre</p>
+          <h1>Press, publications &amp; broadcast</h1>
           <p className="page-lead">
             Editor of Kisan Ki Awaaz · Author of Development Misplaced (Penguin, 2014) · National TV
             &amp; international forums.
           </p>
+        </div>
+      </section>
+
+      {featured ? (
+        <section className="band press-feature-band">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">Featured newspaper coverage</p>
+              <h2>Dainik Bhaskar · July 2021</h2>
+              <p className="section-deck">
+                Full-page Hindi feature under “सुलगते सरोकार” — social commentary by the National
+                President, Bharatiya Krishak Samaj.
+              </p>
+            </Reveal>
+
+            <Reveal className="press-feature">
+              <figure className="press-feature-thumb">
+                <img
+                  src={featured.image}
+                  alt={`${featured.outlet} — ${featured.title}`}
+                  loading="lazy"
+                />
+                <figcaption>{featured.outlet} · {featured.when}</figcaption>
+              </figure>
+              <div className="press-feature-copy">
+                <p className="press-outlet">{featured.outlet}</p>
+                <p className="press-date">{featured.when}{featured.section ? ` · ${featured.section}` : ''}</p>
+                <h3 className="press-headline">{featured.title}</h3>
+                {featured.titleEn ? <p className="press-headline-en">{featured.titleEn}</p> : null}
+                <p className="press-summary">{featured.summary}</p>
+                {featured.detail ? <p className="press-detail">{featured.detail}</p> : null}
+                {featured.href ? (
+                  <a
+                    className="btn btn-solid"
+                    href={featured.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {featured.readMoreLabel || 'Read More'}
+                  </a>
+                ) : (
+                  <a className="btn btn-solid" href={featured.image}>
+                    {featured.readMoreLabel || 'View clipping'}
+                  </a>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="band muted-band">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Press &amp; publications</p>
+            <h2>Book, magazine, opinions, interviews</h2>
+          </Reveal>
+          <div className="press-grid">
+            {otherPress.map((item, i) => (
+              <Reveal key={`${item.outlet}-${item.title}`} as="article" className="press-card" delay={i * 40}>
+                <span className="press-card-type">{item.type}</span>
+                <h3>{item.title}</h3>
+                <p className="press-card-meta">
+                  {item.outlet}
+                  {item.when ? ` · ${item.when}` : ''}
+                </p>
+                {item.summary ? <p className="press-card-summary">{item.summary}</p> : null}
+                {item.href ? (
+                  <a
+                    className="text-link"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read More
+                  </a>
+                ) : (
+                  <span className="press-card-static">Archive entry</span>
+                )}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -30,7 +121,10 @@ export default function MediaPage() {
             <p className="kicker">Channels</p>
             <h2>Social &amp; web</h2>
           </Reveal>
-          <div className="link-grid">
+          <Reveal>
+            <SocialIcons items={social} />
+          </Reveal>
+          <div className="link-grid" style={{ marginTop: 28 }}>
             {social.map((s, i) => (
               <Reveal
                 key={s.id}
@@ -53,48 +147,12 @@ export default function MediaPage() {
       <section className="band muted-band">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="kicker">Publications &amp; coverage</p>
-            <h2>Book, magazine, opinions, interviews</h2>
-          </Reveal>
-          <ul className="media-list">
-            {press.map((item, i) => (
-              <Reveal key={item.title} as="li" delay={i * 40}>
-                {item.href ? (
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    <span className="media-type">{item.type}</span>
-                    <span className="media-title">
-                      {item.title}
-                      <span className="media-meta">
-                        {' '}
-                        — {item.outlet}
-                        {item.when ? `, ${item.when}` : ''}
-                      </span>
-                    </span>
-                  </a>
-                ) : (
-                  <div className="media-static">
-                    <span className="media-type">{item.type}</span>
-                    <span className="media-title">
-                      {item.title}
-                      <span className="media-meta">
-                        {' '}
-                        — {item.outlet}
-                        {item.when ? `, ${item.when}` : ''}
-                      </span>
-                    </span>
-                  </div>
-                )}
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="band">
-        <div className="wrap">
-          <Reveal className="section-head">
             <p className="kicker">Broadcast</p>
             <h2>National television</h2>
+            <p className="section-deck">
+              Regular appearances discussing farmer policy, seed rights, MSP, and agricultural
+              trade — voice of {profile.name}.
+            </p>
           </Reveal>
           <div className="chip-row">
             {tvChannels.map((ch) => (

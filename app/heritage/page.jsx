@@ -72,7 +72,11 @@ export default function HeritagePage() {
                       <img src={chapter.image} alt={chapter.title} loading="lazy" />
                     </figure>
                   ) : (
-                    <div className="story-figure-placeholder" role="img" aria-label={`${chapter.title} photograph pending`}>
+                    <div
+                      className="story-figure-placeholder"
+                      role="img"
+                      aria-label={`${chapter.title} photograph pending`}
+                    >
                       <p>Photograph pending</p>
                       <span>Upload archival image to complete this chapter</span>
                     </div>
@@ -84,31 +88,75 @@ export default function HeritagePage() {
         </div>
       </section>
 
-      <section className="band">
+      <section id="kisan-bhavan" className="band kb-dossier-band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="kicker">Kisan Bhavan dossier</p>
+            <p className="kicker">Featured · Kisan Bhavan dossier</p>
             <h2>{kisanBhavan.title}</h2>
             <p className="section-deck">{kisanBhavan.lead}</p>
           </Reveal>
+
           <div className="kisan-bhavan-grid">
             <Reveal as="article" className="kb-card">
               <h3>Why established</h3>
               <p>{kisanBhavan.whyEstablished.text}</p>
+              <span className="kb-status">Status: {kisanBhavan.whyEstablished.status}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={60}>
-              <h3>Significance</h3>
+              <h3>Historical significance</h3>
               <p>{kisanBhavan.historicalSignificance.text}</p>
+              <span className="kb-status">Status: {kisanBhavan.historicalSignificance.status}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={120}>
               <h3>Foundation ceremony</h3>
               <p>{kisanBhavan.foundationCeremony.text}</p>
+              <span className="kb-status">Status: {kisanBhavan.foundationCeremony.status}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={180}>
               <h3>H. D. Deve Gowda</h3>
               <p>{kisanBhavan.deveGowda.text}</p>
+              <span className="kb-status">Status: {kisanBhavan.deveGowda.status}</span>
+            </Reveal>
+            <Reveal as="article" className="kb-card" delay={220}>
+              <h3>Krishan Bir Chaudhary’s role</h3>
+              <p>{kisanBhavan.roleOfKrishanBir.text}</p>
+              <span className="kb-status">Status: {kisanBhavan.roleOfKrishanBir.status}</span>
             </Reveal>
           </div>
+
+          <Reveal className="section-head" style={{ marginTop: 56 }}>
+            <p className="kicker">Historical timeline</p>
+            <h2>What we can place in sequence today</h2>
+          </Reveal>
+          <ol className="kb-timeline">
+            {kisanBhavan.timeline.map((item, i) => (
+              <Reveal key={item.title} as="li" className={`kb-timeline-item is-${item.status}`} delay={i * 50}>
+                <time>{item.when}</time>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.what}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+
+          <Reveal className="section-head" style={{ marginTop: 56 }}>
+            <p className="kicker">Archival assets required</p>
+            <h2>Photographs &amp; documents still needed</h2>
+          </Reveal>
+          <div className="kb-photo-grid">
+            {kisanBhavan.photos.map((photo, i) => (
+              <Reveal key={photo.caption} as="div" className="kb-photo-slot" delay={i * 40}>
+                <p className="kb-photo-caption">{photo.caption}</p>
+                <span className="kb-photo-note">{photo.note}</span>
+              </Reveal>
+            ))}
+          </div>
+          <ul className="kb-asset-list">
+            {kisanBhavan.assetsRequired.map((asset) => (
+              <li key={asset}>{asset}</li>
+            ))}
+          </ul>
         </div>
       </section>
 

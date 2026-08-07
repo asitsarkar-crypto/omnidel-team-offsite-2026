@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Reveal from '../../components/Reveal';
-import { contact, profile, roles, tvChannels } from '../../lib/data';
+import SocialIcons from '../../components/SocialIcons';
+import { awards, contact, profile, roles, social, tvChannels } from '../../lib/data';
 
 export const metadata = {
   title: 'About',
@@ -55,6 +56,9 @@ export default function AboutPage() {
                 {contact.webLabel}
               </a>
             </p>
+            <div className="mt-4">
+              <SocialIcons items={social} />
+            </div>
             <Link className="text-link" href="/journey">
               Full journey &amp; assignments
             </Link>
@@ -81,6 +85,45 @@ export default function AboutPage() {
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="band" id="recognition">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Recognition</p>
+            <h2>Awards &amp; honours from the curriculum vitae</h2>
+          </Reveal>
+          <div className="about-award-grid">
+            {awards.map((award, i) => (
+              <Reveal key={award.title} as="article" className="about-award-card" delay={i * 50}>
+                <p className="kicker">{award.when}</p>
+                <h3>{award.title}</h3>
+                <p>{award.by}</p>
+                <p className="role-note">{award.detail}</p>
+                <Link className="text-link" href="/awards">
+                  View awards gallery
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="band muted-band" id="travel">
+        <div className="wrap narrow">
+          <Reveal>
+            <p className="kicker">International engagement</p>
+            <h2>Countries visited for farmer advocacy</h2>
+            <p className="lede">
+              Documented travel across continents for WTO ministerials, FAO forums, seed-patent
+              advocacy, and farmer knowledge exchange:
+            </p>
+            <p className="travel-line">{profile.travel}</p>
+            <Link className="text-link" href="/journey">
+              See special assignments timeline
+            </Link>
+          </Reveal>
         </div>
       </section>
 

@@ -67,7 +67,7 @@ export default function HomeContact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t.cta.bookConsult}
+            {t.cta.whatsapp}
           </a>
           <a className="btn btn-line btn-line-dark" href={`mailto:${contact.email}`}>
             {t.cta.contactUs}

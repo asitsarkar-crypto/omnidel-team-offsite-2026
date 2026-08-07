@@ -3,6 +3,7 @@ import HomeBenefits from '../components/home/HomeBenefits';
 import HomeContact from '../components/home/HomeContact';
 import HomeFaq from '../components/home/HomeFaq';
 import HomeHero from '../components/home/HomeHero';
+import HomeKisanBhavan from '../components/home/HomeKisanBhavan';
 import HomeProcess from '../components/home/HomeProcess';
 import HomeServices from '../components/home/HomeServices';
 import HomeStickyCta from '../components/home/HomeStickyCta';
@@ -29,6 +30,7 @@ export default function HomePage() {
       </section>
 
       <HomeAbout />
+      <HomeKisanBhavan />
       <HomeServices />
       <HomeWhyUs />
       <HomeProcess />
