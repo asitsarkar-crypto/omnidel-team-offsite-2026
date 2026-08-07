@@ -141,22 +141,36 @@ export default function HeritagePage() {
           </ol>
 
           <Reveal className="section-head" style={{ marginTop: 56 }}>
-            <p className="kicker">Archival assets required</p>
-            <h2>Photographs &amp; documents still needed</h2>
+            <p className="kicker">Ceremony archive</p>
+            <h2>Photographs from the project library</h2>
           </Reveal>
-          <div className="kb-photo-grid">
-            {kisanBhavan.photos.map((photo, i) => (
-              <Reveal key={photo.caption} as="div" className="kb-photo-slot" delay={i * 40}>
-                <p className="kb-photo-caption">{photo.caption}</p>
-                <span className="kb-photo-note">{photo.note}</span>
-              </Reveal>
-            ))}
+          <div className="kb-photo-grid kb-photo-grid-live">
+            {kisanBhavan.photos.map((photo, i) =>
+              photo.src ? (
+                <Reveal
+                  key={photo.src}
+                  as="figure"
+                  className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
+                  delay={i * 40}
+                >
+                  <img src={photo.src} alt={photo.caption} loading="lazy" />
+                  <figcaption>{photo.caption}</figcaption>
+                </Reveal>
+              ) : (
+                <Reveal key={photo.caption} as="div" className="kb-photo-slot" delay={i * 40}>
+                  <p className="kb-photo-caption">{photo.caption}</p>
+                  <span className="kb-photo-note">{photo.note}</span>
+                </Reveal>
+              )
+            )}
           </div>
-          <ul className="kb-asset-list">
-            {kisanBhavan.assetsRequired.map((asset) => (
-              <li key={asset}>{asset}</li>
-            ))}
-          </ul>
+          {kisanBhavan.assetsRequired?.length ? (
+            <ul className="kb-asset-list">
+              {kisanBhavan.assetsRequired.map((asset) => (
+                <li key={asset}>{asset}</li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </section>
 

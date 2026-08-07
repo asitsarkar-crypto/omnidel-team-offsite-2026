@@ -739,7 +739,9 @@ h2 {
 .about-shot img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
+  background: #eef2ec;
 }
 
 .text-link {
@@ -974,14 +976,30 @@ h2 {
   overflow: hidden;
 }
 
+.gallery-frame {
+  background: #eef2ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.gallery-card.is-portrait .gallery-frame {
+  min-height: 320px;
+}
+
 .gallery-card img {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
   transition: transform 0.6s var(--ease);
 }
 
-.gallery-card:hover img { transform: scale(1.04); }
+.gallery-card:hover img { transform: scale(1.02); }
 
 .gallery-card figcaption {
   padding: 14px 16px 18px;
@@ -1524,7 +1542,10 @@ h2 {
   width: 100%;
   height: 100%;
   min-height: 220px;
-  object-fit: cover;
+  max-height: 360px;
+  object-fit: contain;
+  object-position: center;
+  background: #eef2ec;
 }
 
 .award-card h2 {
@@ -2521,5 +2542,47 @@ h2 {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+
+/* Live Kisan Bhavan archive photos — no face crop */
+.kb-photo-grid-live {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.kb-photo-live {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+
+.kb-photo-live img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #eef2ec;
+}
+
+.kb-photo-live.is-portrait img {
+  max-height: 520px;
+}
+
+.kb-photo-live figcaption {
+  padding: 12px 14px 16px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .kb-photo-grid-live {
+    grid-template-columns: 1fr;
   }
 }

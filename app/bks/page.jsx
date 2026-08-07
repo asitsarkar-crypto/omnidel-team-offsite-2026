@@ -204,12 +204,12 @@ export default function BksPage() {
             <Reveal as="article" className="kb-card" delay={120}>
               <h3>Foundation ceremony</h3>
               <p>{kisanBhavan.foundationCeremony.text}</p>
-              <span className="kb-status is-placeholder">{kisanBhavan.foundationCeremony.status}</span>
+              <span className="kb-status">{kisanBhavan.foundationCeremony.status}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={180}>
               <h3>H. D. Deve Gowda</h3>
               <p>{kisanBhavan.deveGowda.text}</p>
-              <span className="kb-status is-placeholder">{kisanBhavan.deveGowda.status}</span>
+              <span className="kb-status">{kisanBhavan.deveGowda.status}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={220}>
               <h3>Krishan Bir Chaudhary’s role</h3>
@@ -217,17 +217,30 @@ export default function BksPage() {
               <span className="kb-status">{kisanBhavan.roleOfKrishanBir.status}</span>
             </Reveal>
           </div>
-          <div className="kb-photo-grid">
-            {kisanBhavan.photos.map((photo) => (
-              <div key={photo.caption} className="kb-photo-slot" aria-label={photo.caption}>
-                <p className="kb-photo-caption">{photo.caption}</p>
-                <p className="kb-photo-note">Asset pending — {photo.note}</p>
-              </div>
-            ))}
+          <div className="kb-photo-grid kb-photo-grid-live">
+            {kisanBhavan.photos.map((photo) =>
+              photo.src ? (
+                <figure
+                  key={photo.src}
+                  className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
+                >
+                  <img src={photo.src} alt={photo.caption} loading="lazy" />
+                  <figcaption>{photo.caption}</figcaption>
+                </figure>
+              ) : (
+                <div key={photo.caption} className="kb-photo-slot" aria-label={photo.caption}>
+                  <p className="kb-photo-caption">{photo.caption}</p>
+                  <p className="kb-photo-note">Asset pending — {photo.note}</p>
+                </div>
+              )
+            )}
           </div>
           <Reveal className="mt-8">
             <Link className="btn btn-solid" href="/heritage#kisan-bhavan">
               Full Kisan Bhavan story
+            </Link>
+            <Link className="btn btn-line btn-line-dark" href="/gallery" style={{ marginLeft: 12 }}>
+              Photo gallery
             </Link>
           </Reveal>
         </div>

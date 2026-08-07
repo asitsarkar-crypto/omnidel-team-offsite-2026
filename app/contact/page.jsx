@@ -1,5 +1,4 @@
 import Reveal from '../../components/Reveal';
-import GoogleFormEmbed from '../../components/contact/GoogleFormEmbed';
 import SocialIcons from '../../components/SocialIcons';
 import { contact, featuredMedia, orgs, profile, social } from '../../lib/data';
 import { buildMetadata, pageSeo } from '../../lib/seo';
@@ -62,14 +61,14 @@ export default function ContactPage() {
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Contact</p>
-          <h1>Write, call, or fill the enquiry form</h1>
+          <h1>Write, call, or message on WhatsApp</h1>
           <p className="page-lead">
             Official contact for {profile.name} — press, invitations, and farmer organisation
             correspondence.
           </p>
           <div className="hero-actions" style={{ marginTop: 24 }}>
-            <a className="btn btn-solid" href="#enquiry">
-              Fill Enquiry Form
+            <a className="btn btn-solid" href={`mailto:${contact.email}`}>
+              Email
             </a>
             <a
               className="btn btn-line"
@@ -111,21 +110,6 @@ export default function ContactPage() {
             >
               Message on WhatsApp
             </a>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="enquiry" className="band muted-band scroll-mt-[var(--nav-h)]">
-        <div className="wrap">
-          <Reveal className="section-head">
-            <p className="kicker">Enquiry</p>
-            <h2>Google Form</h2>
-            <p className="section-deck">
-              Share your name, organisation, mobile, email, service interest, and message.
-            </p>
-          </Reveal>
-          <Reveal>
-            <GoogleFormEmbed title="Contact enquiry form" />
           </Reveal>
         </div>
       </section>

@@ -43,7 +43,7 @@ export default function HomeServices() {
         </div>
         <Reveal className="mt-10">
           <a className="btn btn-solid" href="#contact">
-            {t.cta.fillForm}
+            {t.cta.contactUs}
           </a>
         </Reveal>
       </div>

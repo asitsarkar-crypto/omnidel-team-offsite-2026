@@ -5,6 +5,8 @@ import Reveal from '../Reveal';
 import { branding, kisanBhavan } from '../../lib/data';
 
 export default function HomeKisanBhavan() {
+  const photos = (kisanBhavan.photos || []).filter((p) => p.status === 'available' && p.src);
+
   return (
     <section
       id="kisan-bhavan"
@@ -28,8 +30,9 @@ export default function HomeKisanBhavan() {
               className="kb-feature-seal"
             />
             <p className="kb-feature-note">
-              Archival photographs of the foundation ceremony are still required — placeholders
-              below identify exactly what to upload.
+              Archival ceremony photographs from the project library document the 26 December 1996
+              inauguration — including the plaque naming H. D. Deve Gowda and Dr. Krishan Bir
+              Chaudhary.
             </p>
           </Reveal>
 
@@ -53,12 +56,28 @@ export default function HomeKisanBhavan() {
           </div>
         </div>
 
+        {photos.length ? (
+          <div className="kb-photo-grid kb-photo-grid-live" style={{ marginTop: 36 }}>
+            {photos.map((photo, i) => (
+              <Reveal
+                key={photo.src}
+                as="figure"
+                className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
+                delay={i * 50}
+              >
+                <img src={photo.src} alt={photo.caption} loading="lazy" />
+                <figcaption>{photo.caption}</figcaption>
+              </Reveal>
+            ))}
+          </div>
+        ) : null}
+
         <Reveal className="kb-feature-cta" delay={80}>
           <Link className="btn btn-solid" href="/heritage#kisan-bhavan">
             Read the full Kisan Bhavan story
           </Link>
-          <Link className="btn btn-line btn-line-dark" href="/heritage">
-            Heritage storytelling
+          <Link className="btn btn-line btn-line-dark" href="/gallery">
+            Open photo gallery
           </Link>
         </Reveal>
       </div>

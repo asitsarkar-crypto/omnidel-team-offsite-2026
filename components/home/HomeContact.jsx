@@ -1,7 +1,6 @@
 'use client';
 
 import Reveal from '../Reveal';
-import GoogleFormEmbed from '../contact/GoogleFormEmbed';
 import SocialIcons from '../SocialIcons';
 import { contact, social } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
@@ -57,12 +56,9 @@ export default function HomeContact() {
           <SocialIcons items={social} />
         </Reveal>
 
-        <div className="mb-8 flex flex-wrap gap-3">
-          <a className="btn btn-solid" href="#enquiry-form">
-            {t.cta.fillForm}
-          </a>
+        <div className="mb-2 flex flex-wrap gap-3">
           <a
-            className="btn btn-line btn-line-dark"
+            className="btn btn-solid"
             href={contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -73,10 +69,6 @@ export default function HomeContact() {
             {t.cta.contactUs}
           </a>
         </div>
-
-        <Reveal id="enquiry-form">
-          <GoogleFormEmbed title={t.contact.enquiry} />
-        </Reveal>
       </div>
     </section>
   );
