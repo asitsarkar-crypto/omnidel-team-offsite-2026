@@ -5,6 +5,7 @@ import SeedSponsorBand from '../components/home/SeedSponsorBand';
 import VatikaHero from '../components/home/VatikaHero';
 import HomeContact from '../components/home/HomeContact';
 import HomeStickyCta from '../components/home/HomeStickyCta';
+import HomeTestimonialsVatika from '../components/home/HomeTestimonialsVatika';
 import FaqAccordion from '../components/FaqAccordion';
 import JsonLd from '../components/JsonLd';
 import Reveal from '../components/Reveal';
@@ -61,6 +62,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <HomeTestimonialsVatika />
+
       <section className="band" aria-labelledby="gallery-teaser-title">
         <div className="wrap">
           <Reveal className="section-head row-head">
@@ -80,6 +83,11 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-8">
+            <Link className="text-link" href="/media">
+              Media centre — news, press, videos →
+            </Link>
+          </Reveal>
         </div>
       </section>
 

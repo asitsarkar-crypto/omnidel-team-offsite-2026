@@ -1,10 +1,9 @@
 import Reveal from '../../components/Reveal';
-import { gallery, profile, social } from '../../lib/data';
+import { gallery, social } from '../../lib/data';
+import { vatika } from '../../lib/vatika';
+import { buildMetadata, pageSeo } from '../../lib/seo';
 
-export const metadata = {
-  title: 'Gallery',
-  description: `Photo gallery for ${profile.name}.`,
-};
+export const metadata = buildMetadata(pageSeo.gallery);
 
 export default function GalleryPage() {
   return (
@@ -12,11 +11,15 @@ export default function GalleryPage() {
       <section className="page-hero">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/photos/events/shikhar-group.png')" }}
+          style={{ backgroundImage: "url('/photos/field-01.jpg')" }}
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Gallery</p>
-          <h1>Public moments and agrarian context</h1>
+          <h1>Land, leadership, and living canopy</h1>
+          <p className="page-lead">
+            Atmosphere and public moments supporting {vatika.name} and Bharatiya Krishak Samaj
+            stewardship.
+          </p>
         </div>
       </section>
 
@@ -25,7 +28,7 @@ export default function GalleryPage() {
           <div className="gallery-grid">
             {gallery.map((item, i) => (
               <Reveal key={item.src} as="figure" className="gallery-card" delay={(i % 3) * 70}>
-                <img src={item.src} alt={item.alt} />
+                <img src={item.src} alt={item.alt} loading="lazy" />
                 <figcaption>
                   {item.caption}
                   {item.group ? ` · ${item.group}` : ''}
@@ -35,7 +38,7 @@ export default function GalleryPage() {
           </div>
           <Reveal className="note-panel">
             <p className="kicker">More</p>
-            <h2>Follow for latest event photography</h2>
+            <h2>Follow for latest photography</h2>
             <div className="social-row dense">
               {social.map((s) => (
                 <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer">

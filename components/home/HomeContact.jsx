@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Reveal from '../Reveal';
 import GoogleFormEmbed from '../contact/GoogleFormEmbed';
 import SocialIcons from '../SocialIcons';
@@ -58,7 +59,13 @@ export default function HomeContact() {
         </Reveal>
 
         <div className="mb-8 flex flex-wrap gap-3">
-          <a className="btn btn-solid" href="#enquiry-form">
+          <Link className="btn btn-solid" href="/plant">
+            {t.cta.getStarted}
+          </Link>
+          <Link className="btn btn-line btn-line-dark" href="/donate">
+            {t.cta.donateNow || 'Donate Now'}
+          </Link>
+          <a className="btn btn-line btn-line-dark" href="#enquiry-form">
             {t.cta.fillForm}
           </a>
           <a
@@ -67,10 +74,7 @@ export default function HomeContact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t.cta.bookConsult}
-          </a>
-          <a className="btn btn-line btn-line-dark" href={`mailto:${contact.email}`}>
-            {t.cta.contactUs}
+            {t.cta.whatsapp}
           </a>
         </div>
 
