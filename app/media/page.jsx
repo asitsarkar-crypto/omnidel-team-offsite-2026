@@ -37,7 +37,34 @@ export default function MediaPage() {
           <Reveal className="section-head">
             <p className="kicker">Videos</p>
             <h2>Watch the movement</h2>
+            <p className="section-deck">
+              KY21C films featured on{' '}
+              <a href="https://bkswbengal.org/leadership" target="_blank" rel="noopener noreferrer">
+                BKS West Bengal leadership
+              </a>
+              , plus institutional channels.
+            </p>
           </Reveal>
+          <div className="mahacharya-video-grid" style={{ marginBottom: 28 }}>
+            {mediaSections.videos
+              .filter((item) => item.embedSrc)
+              .map((item, i) => (
+                <Reveal key={item.id} delay={i * 50} className="mahacharya-video">
+                  <div className="video-frame">
+                    <iframe
+                      src={item.embedSrc}
+                      title={item.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.note}</p>
+                </Reveal>
+              ))}
+          </div>
           <div className="media-card-grid">
             {mediaSections.videos.map((item, i) => (
               <Reveal key={item.id} delay={i * 50} className={`media-card ${item.status === 'placeholder' ? 'is-placeholder' : ''}`}>
@@ -65,14 +92,23 @@ export default function MediaPage() {
           </Reveal>
           <div className="media-card-grid">
             {mediaSections.press.map((item) => (
-              <Reveal key={item.id} className="media-card is-placeholder">
+              <Reveal
+                key={item.id}
+                className={`media-card ${item.status === 'placeholder' ? 'is-placeholder' : ''}`}
+              >
                 <span className="media-type">{item.type}</span>
                 <h3>{item.title}</h3>
                 <p>
                   {item.outlet}
                   {item.when ? ` · ${item.when}` : ''}
                 </p>
-                <p className="note-inline">{item.note}</p>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-link">
+                    Open archive →
+                  </a>
+                ) : (
+                  <p className="note-inline">{item.note}</p>
+                )}
               </Reveal>
             ))}
           </div>

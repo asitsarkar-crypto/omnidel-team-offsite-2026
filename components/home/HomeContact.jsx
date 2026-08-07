@@ -11,7 +11,7 @@ export default function HomeContact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
+    <section id="contact" className="band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
           <p className="kicker">{t.contact.kicker}</p>

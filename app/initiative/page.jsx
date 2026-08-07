@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
+import MahacharyaPresence from '../../components/MahacharyaPresence';
 import Reveal from '../../components/Reveal';
 import { branding } from '../../lib/data';
+import { mahacharya } from '../../lib/mahacharya';
 import { vatika } from '../../lib/vatika';
 import { breadcrumbJsonLd, buildMetadata, pageSeo } from '../../lib/seo';
 
@@ -17,7 +19,12 @@ export default function InitiativePage() {
         ])}
       />
       <section className="page-hero">
-        <div className="page-hero-bg" style={{ backgroundImage: "url('/photos/hands-01.jpg')" }} />
+        <div
+          className="page-hero-bg"
+          style={{
+            backgroundImage: "url('/photos/bks-wb/appointment-with-national-president.jpeg')",
+          }}
+        />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Joint Initiative</p>
           <h1>KY21C × Bharatiya Krishak Samaj</h1>
@@ -38,6 +45,8 @@ export default function InitiativePage() {
         </div>
       </section>
 
+      <MahacharyaPresence />
+
       <section className="band muted-band">
         <div className="wrap narrow">
           <Reveal>
@@ -46,8 +55,13 @@ export default function InitiativePage() {
             <p className="lede">
               Bharatiya Krishak Samaj carries a farmer-organisation lineage from the 1955 Farmers’
               Forum tradition. KarmYog for the 21st Century brings the ethic of work-as-path into
-              education, livelihood, and green practice. KarmYog Vatika is where those streams meet
-              a public invitation to plant and sponsor trees.
+              education, livelihood, and green practice. With {mahacharya.displayName} serving as
+              State President of{' '}
+              <a href={mahacharya.links.bksWestBengal} target="_blank" rel="noopener noreferrer">
+                BKS West Bengal
+              </a>
+              , appointed by Shri Krishan Bir Chaudhary on {mahacharya.appointment.dateLabel}, those
+              streams now meet a public invitation to plant and sponsor trees.
             </p>
             <p className="lede">
               Distinct from commercial biophilic design services published elsewhere under related
@@ -65,6 +79,14 @@ export default function InitiativePage() {
               <Link className="btn btn-line dark" href="/bks">
                 About BKS
               </Link>
+              <a
+                className="btn btn-line dark"
+                href={mahacharya.links.bksWestBengal}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BKS West Bengal
+              </a>
             </div>
           </Reveal>
         </div>

@@ -13,8 +13,8 @@
   --color-grain: #b89b4c;
   --color-grain-soft: #e8d9a8;
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Karla', system-ui, sans-serif;
-  --font-hi: 'Noto Sans Devanagari', 'Karla', sans-serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
+  --font-hi: 'Noto Sans Devanagari', 'Figtree', sans-serif;
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -31,10 +31,10 @@
   --white: #ffffff;
   --stroke: rgba(18, 23, 20, 0.12);
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Karla', system-ui, sans-serif;
-  --font-hi: 'Noto Sans Devanagari', 'Karla', sans-serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
+  --font-hi: 'Noto Sans Devanagari', 'Figtree', sans-serif;
   --nav-h: 76px;
-  --lang-bar-h: 52px;
+  --lang-bar-h: 0px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -157,7 +157,7 @@ code {
 .nav-brand-en {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 560;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
   color: #fff;
@@ -256,6 +256,7 @@ code {
 }
 
 .lang-bar {
+  display: none !important;
   position: fixed;
   inset: var(--nav-h) 0 auto 0;
   z-index: 40;
@@ -508,7 +509,7 @@ html[data-lang='mr'] .footer-hi {
 .hero-brand {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 8vw, 5rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.03em;
   margin-bottom: 18px;
@@ -517,7 +518,7 @@ html[data-lang='mr'] .footer-hi {
 
 .hero h1 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.35rem, 3.2vw, 2rem);
   line-height: 1.25;
   max-width: 22ch;
@@ -626,7 +627,7 @@ html[data-lang='mr'] .footer-hi {
 .page-hero h1 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5.5vw, 3.4rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin: 8px 0 14px;
@@ -658,7 +659,7 @@ html[data-lang='mr'] .footer-hi {
 h2 {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 4vw, 2.55rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--field-deep);
@@ -781,7 +782,7 @@ h2 {
   display: block;
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 560;
+  font-weight: 700;
   line-height: 1.25;
   color: var(--field-deep);
 }
@@ -853,7 +854,7 @@ h2 {
 .pillar-body h3 {
   font-family: var(--font-display);
   font-size: 1.55rem;
-  font-weight: 560;
+  font-weight: 700;
   color: var(--field-deep);
   margin-bottom: 10px;
 }
@@ -1087,7 +1088,7 @@ h2 {
   font-family: var(--font-display);
   font-size: 1.35rem;
   color: var(--field-deep);
-  font-weight: 560;
+  font-weight: 700;
 }
 
 .link-detail,
@@ -1447,7 +1448,7 @@ h2 {
   padding: 0 18px;
   font-family: var(--font-display);
   font-size: 1.05rem;
-  font-weight: 560;
+  font-weight: 700;
 }
 
 .contact-grid {
@@ -1467,7 +1468,7 @@ h2 {
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2.5vw, 1.55rem);
   color: var(--field-deep);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -1642,7 +1643,7 @@ h2 {
 .heritage-body h3 {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 560;
+  font-weight: 700;
   color: var(--field-deep);
   margin-bottom: 8px;
 }
@@ -1861,7 +1862,7 @@ h2 {
 .faq-q-text {
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.2vw, 1.4rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -2685,6 +2686,271 @@ h2 {
   }
 
   .thank-dl div {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Enquiry panel — no empty iframe placeholder */
+.enquiry-panel {
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  border-radius: 6px;
+}
+
+.enquiry-title {
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  margin-bottom: 10px;
+}
+
+.enquiry-lead {
+  color: var(--muted);
+  max-width: 58ch;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+
+.enquiry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.enquiry-subhead {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--field-deep);
+  margin: 18px 0 10px;
+}
+
+.enquiry-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.enquiry-fields li {
+  position: relative;
+  padding-left: 14px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.enquiry-fields li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grain);
+}
+
+.enquiry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.enquiry-tags li {
+  border: 1px solid var(--stroke);
+  background: var(--mist);
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  border-radius: 999px;
+}
+
+.enquiry-iframe {
+  display: block;
+  width: 100%;
+  min-height: 720px;
+  border: 0;
+  background: #fff;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .enquiry-fields { grid-template-columns: 1fr; }
+  .enquiry-iframe { min-height: 640px; }
+}
+
+/* Mahacharya editorial */
+.mahacharya-editorial {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: clamp(22px, 4vw, 48px);
+  align-items: start;
+  margin-top: 8px;
+}
+
+.mahacharya-portrait {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+
+.mahacharya-portrait img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.mahacharya-portrait figcaption {
+  padding: 12px 14px 14px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: grid;
+  gap: 4px;
+}
+
+.mahacharya-portrait figcaption span,
+.mahacharya-moment figcaption span,
+.gallery-detail,
+.gallery-group {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.gallery-group {
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.mahacharya-quote {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.mahacharya-quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--field-deep);
+}
+
+.mahacharya-copy .lede.soft {
+  opacity: 0.92;
+}
+
+.appointment-note {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: rgba(31, 77, 56, 0.06);
+  border-left: 3px solid var(--grain);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.mahacharya-moments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.mahacharya-moment {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+
+.mahacharya-moment img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.mahacharya-moment figcaption {
+  padding: 12px 14px 14px;
+}
+
+.mahacharya-moment figcaption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--field-deep);
+  margin-bottom: 4px;
+}
+
+.mahacharya-video-head {
+  margin-top: 36px;
+  margin-bottom: 16px;
+}
+
+.mahacharya-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.mahacharya-video h4 {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.mahacharya-video p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0b1c14;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.joint-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.faq-list {
+  margin-top: 8px;
+}
+
+.section-head + .faq-list {
+  margin-top: 6px;
+}
+
+@media (max-width: 900px) {
+  .mahacharya-editorial,
+  .mahacharya-moments,
+  .mahacharya-video-grid,
+  .joint-grid {
     grid-template-columns: 1fr;
   }
 }

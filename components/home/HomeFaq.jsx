@@ -10,7 +10,7 @@ export default function HomeFaq() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="band faq-band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
+    <section id="faq" className="band faq-band scroll-mt-[var(--nav-h)]">
       <div className="wrap faq-wrap">
         <Reveal className="section-head">
           <p className="kicker">{t.faq.kicker}</p>
@@ -22,10 +22,8 @@ export default function HomeFaq() {
             const panelId = `faq-panel-${index}`;
             const buttonId = `faq-button-${index}`;
             return (
-              <Reveal
+              <div
                 key={item.q}
-                delay={index * 40}
-                as="div"
                 className={`faq-item ${isOpen ? 'is-open' : ''}`}
                 role="listitem"
               >
@@ -53,7 +51,7 @@ export default function HomeFaq() {
                 >
                   <p>{item.a}</p>
                 </div>
-              </Reveal>
+              </div>
             );
           })}
         </div>

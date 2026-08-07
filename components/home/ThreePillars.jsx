@@ -4,7 +4,7 @@ import { pillars } from '../../lib/platform';
 
 export default function ThreePillars() {
   return (
-    <section id="pillars" className="band pillars-band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
+    <section id="pillars" className="band pillars-band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
           <p className="kicker">Three pillars</p>

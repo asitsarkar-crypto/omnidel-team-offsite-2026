@@ -10,7 +10,7 @@ import FaqAccordion from '../components/FaqAccordion';
 import JsonLd from '../components/JsonLd';
 import Reveal from '../components/Reveal';
 import Link from 'next/link';
-import { gallery } from '../lib/data';
+import { photosForPlacement } from '../lib/mahacharya';
 import { vatikaFaq } from '../lib/vatika';
 import { buildMetadata, faqJsonLd, pageSeo } from '../lib/seo';
 
@@ -27,9 +27,8 @@ export const metadata = buildMetadata(pageSeo.home);
  * Standalone deploy only — never merge/overwrite the original BKS live site.
  */
 export default function HomePage() {
-  const activityGallery = gallery
-    .filter((g) => g.group === 'Atmosphere' || g.group === 'Leadership')
-    .slice(0, 6);
+  /** Prefer curated KY21C / BKS-WB activity frames over a random national dump. */
+  const activityGallery = photosForPlacement('home').slice(0, 6);
 
   return (
     <>
@@ -86,8 +85,8 @@ export default function HomePage() {
               <p className="kicker">Activity &amp; Impact</p>
               <h2 id="activity-title">Plantation locations, growth, ecological care</h2>
               <p className="section-deck">
-                Photo updates and field milestones. Location and species lists publish as partners
-                confirm sites.
+                Appointment, sapling presentation, and field milestones — curated from BKS West
+                Bengal and KY21C. Location and species lists publish as partners confirm sites.
               </p>
             </div>
             <div className="hero-actions">

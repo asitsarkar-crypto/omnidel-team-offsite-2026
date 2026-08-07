@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { archiveNav, branding, contact, links, nav, orgs, social } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
 import { vatika } from '../lib/vatika';
-import LanguageSwitcher from './LanguageSwitcher';
 import SocialIcons from './SocialIcons';
 import { useLanguage } from './LanguageProvider';
 
@@ -61,9 +60,6 @@ export default function SiteFooter() {
           </p>
           <div className="mt-5">
             <SocialIcons items={social} className="social-icons-footer" />
-          </div>
-          <div className="mt-5">
-            <LanguageSwitcher />
           </div>
         </div>
 

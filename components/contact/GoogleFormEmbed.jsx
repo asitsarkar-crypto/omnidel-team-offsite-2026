@@ -1,18 +1,19 @@
-import { enquiryServices, googleFormUrl } from '../../lib/data';
+import Link from 'next/link';
+import { contact, enquiryServices, googleFormUrl } from '../../lib/data';
 
 /**
  * Embeds a Google Form when `googleFormUrl` is set in lib/data.js.
- * Expected fields: Full Name, Company Name, Mobile Number, Email Address,
- * Service Interested In, Message.
+ * When unset, shows a compact contact path — never a giant empty iframe box.
  */
 export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
   if (googleFormUrl) {
     return (
-      <div className="w-full overflow-hidden rounded-2xl border border-[var(--stroke)] bg-white shadow-[0_20px_60px_rgba(11,28,20,0.08)]">
+      <div className="enquiry-panel enquiry-panel-live">
+        <h3 className="enquiry-title">{title}</h3>
         <iframe
           title={title}
           src={googleFormUrl}
-          className="block w-full min-h-[720px] border-0 bg-white md:min-h-[840px]"
+          className="enquiry-iframe"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
@@ -21,53 +22,48 @@ export default function GoogleFormEmbed({ title = 'Enquiry form' }) {
   }
 
   return (
-    <div className="w-full rounded-2xl border border-dashed border-[rgba(184,155,76,0.55)] bg-[rgba(255,255,255,0.72)] p-6 md:p-10">
-      {/* Replace this iframe with your Google Form Embed URL */}
-      <p className="mb-2 font-[var(--font-display)] text-xl text-[var(--ink)]">{title}</p>
-      <p className="mb-6 max-w-2xl text-[var(--muted)]">
-        Google Form embed URL is not configured yet. Set{' '}
-        <code className="rounded bg-[var(--mist)] px-1.5 py-0.5 text-[0.92em]">googleFormUrl</code> in{' '}
-        <code className="rounded bg-[var(--mist)] px-1.5 py-0.5 text-[0.92em]">lib/data.js</code> to your
-        form&apos;s embed link (usually ends with <code>/viewform?embedded=true</code>).
+    <div className="enquiry-panel">
+      <h3 className="enquiry-title">{title}</h3>
+      <p className="enquiry-lead">
+        Share your name, organisation, mobile, email, and how you wish to take part — planting,
+        sponsorship, press, or partnership. Reach us directly while the embedded form is prepared.
       </p>
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--field)]">
-        Form should collect
-      </p>
-      <ul className="mb-8 grid gap-2 text-[var(--ink)] sm:grid-cols-2">
-        {[
-          'Full Name',
-          'Company Name',
-          'Mobile Number',
-          'Email Address',
-          'Service Interested In',
-          'Message',
-        ].map((field) => (
-          <li key={field} className="flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--grain)]" aria-hidden="true" />
-            {field}
-          </li>
-        ))}
-      </ul>
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--field)]">
-        Suggested service options
-      </p>
-      <ul className="flex flex-wrap gap-2">
-        {enquiryServices.map((service) => (
-          <li
-            key={service}
-            className="rounded-full border border-[var(--stroke)] bg-white px-3 py-1.5 text-sm text-[var(--muted)]"
-          >
-            {service}
-          </li>
-        ))}
-      </ul>
-      <div className="mt-8 overflow-hidden rounded-xl border border-[var(--stroke)] bg-[var(--mist)]">
-        <div className="flex h-[280px] items-center justify-center px-6 text-center text-[var(--muted)] md:h-[360px]">
-          <span>
-            iframe placeholder — paste Google Form embed URL when ready
-          </span>
-        </div>
+
+      <div className="enquiry-actions">
+        <Link className="btn btn-solid" href="/plant">
+          Plant a Tree
+        </Link>
+        <Link className="btn btn-line dark" href="/donate">
+          Donate Now
+        </Link>
+        <a className="btn btn-line dark" href={`mailto:${contact.email}`}>
+          Email us
+        </a>
+        <a
+          className="btn btn-line dark"
+          href={contact.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp
+        </a>
       </div>
+
+      <h4 className="enquiry-subhead">What to include</h4>
+      <ul className="enquiry-fields">
+        {['Full Name', 'Organisation', 'Mobile Number', 'Email Address', 'Interest', 'Message'].map(
+          (field) => (
+            <li key={field}>{field}</li>
+          )
+        )}
+      </ul>
+
+      <h4 className="enquiry-subhead">Ways to participate</h4>
+      <ul className="enquiry-tags">
+        {enquiryServices.map((service) => (
+          <li key={service}>{service}</li>
+        ))}
+      </ul>
     </div>
   );
 }

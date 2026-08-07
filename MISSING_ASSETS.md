@@ -14,6 +14,12 @@ Tracked so delivery can continue with placeholders. Replace before production go
 - [ ] Dedicated plantation hero photograph
 - [ ] Campaign press articles / videos specific to Vatika sponsorship
 - [ ] Sponsor logos beyond KY21C + BKS
+- [ ] Mahacharya field plough stills (tractor land-prep) — drop into `public/photos/activity/field-plough-work.jpg` and `field-plough-document.jpg`
+- [ ] Google Form embed URL (`googleFormUrl` in `lib/data.js`) — enquiry panel stays compact until set
+
+## Official photo sources already wired
+- [x] Mahacharya official portrait + appointment photos from https://bkswbengal.org/
+- [x] KY21C YouTube embeds (Jeevamrut, SRI Farming) from BKS West Bengal leadership page
 
 ## Infrastructure
 - [ ] `NEXT_PUBLIC_SITE_URL` custom domain
