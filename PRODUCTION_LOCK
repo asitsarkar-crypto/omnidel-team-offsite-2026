@@ -6,7 +6,16 @@ LOCKED_URL=https://krishan-bir-chaudhary.vercel.app
 LOCKED_COMMIT=7f9d8ac
 REASON=Owner requested production freeze until explicit unlock. No content rewrite or production deploy allowed.
 
-# UNLOCK (owner only)
-# 1. Delete this file, OR set LOCKED=false in this file
-# 2. Deploy with: UNLOCK_PRODUCTION=1 npx vercel --prod --yes --scope asitsarkar-5954s-projects
-# 3. Optionally remove .cursor/rules/production-lock.mdc
+# HOW THE LOCK WORKS
+# 1. Vercel project buildCommand refuses npm run build unless UNLOCK_PRODUCTION=1
+# 2. Repo prebuild script also refuses when LOCKED=true
+# 3. Git is disconnected + vercel.json git.deploymentEnabled=false
+# 4. Agent rules forbid rewrite / --prod / --build-env unlock
+
+# UNLOCK (owner only — say "unlock" to an agent, or run yourself)
+# A) One-time allowed deploy (keeps lock after):
+#    npx vercel --prod --yes --scope asitsarkar-5954s-projects --build-env UNLOCK_PRODUCTION=1
+# B) Full unlock (remove freeze):
+#    1. Set LOCKED=false here (or delete this file)
+#    2. npx vercel project update krishan-bir-chaudhary --scope asitsarkar-5954s-projects --auto-detect build-command
+#    3. Deploy as usual

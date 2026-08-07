@@ -10,15 +10,17 @@ The live site **https://krishan-bir-chaudhary.vercel.app** is **LOCKED** by owne
 ## Hard rules while `PRODUCTION_LOCK` contains `LOCKED=true`
 
 1. **Do not** change site content, design, copy, i18n, CSS, or pages unless the user **explicitly** says to unlock first.
-2. **Do not** run `vercel --prod`, `vercel deploy --prod`, or promote any deployment to production.
+2. **Do not** run `vercel --prod`, `vercel deploy --prod`, `--build-env UNLOCK_PRODUCTION=1`, or promote any deployment to production.
 3. **Do not** reconnect Git to the Vercel project.
 4. **Do not** delete, rename, or set `LOCKED=false` in `PRODUCTION_LOCK` unless the user clearly asks to unlock.
-5. Bug-only fixes are allowed **only after** the user unlocks (or says unlock + fix).
+5. **Do not** reset the Vercel project `buildCommand` lock unless the user clearly asks to unlock.
+6. Bug-only fixes are allowed **only after** the user unlocks (or says unlock + fix).
 
 ## Unlock (only when user asks)
 
 1. Set `LOCKED=false` in `PRODUCTION_LOCK` or delete the file.
-2. Deploy once with `UNLOCK_PRODUCTION=1`.
-3. Update this rule if lock is removed.
+2. Reset project build command: `npx vercel project update krishan-bir-chaudhary --scope asitsarkar-5954s-projects --auto-detect build-command`
+3. Or for a single allowed deploy while keeping the freeze: `--build-env UNLOCK_PRODUCTION=1`
+4. Update this rule if lock is removed.
 
 Pinned good production deployment: `dpl_DLLGsjoPQXeifHTMCPYesSy7YnqR` (commit `7f9d8ac`).
