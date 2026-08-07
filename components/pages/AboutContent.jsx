@@ -44,7 +44,7 @@ export default function AboutContent() {
             <p className="lede">{p.bio1}</p>
             <p>{p.bio2}</p>
             <p>
-              Email:{' '}
+              {t.contact?.email || 'Email'}:{' '}
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
               {' · '}
               <a href={contact.web} target="_blank" rel="noopener noreferrer">

@@ -137,7 +137,7 @@ export default function MediaContent() {
               >
                 <span className="link-label">{s.label}</span>
                 <strong>{s.handle}</strong>
-                <span className="link-go">Open</span>
+                <span className="link-go">{p.open || 'Open'}</span>
               </Reveal>
             ))}
           </div>

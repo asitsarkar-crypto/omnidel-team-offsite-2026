@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Reveal from '../Reveal';
-import { branding, heritageStory, kisanBhavan, links, profile } from '../../lib/data';
+import { branding, heritageStory, kisanBhavan, links } from '../../lib/data';
 import { getGalleryCaption } from '../../lib/i18n-gallery';
 import { useLanguage } from '../LanguageProvider';
 
@@ -11,6 +11,10 @@ export default function HeritageContent() {
   const p = t.pages?.heritage || {};
   const chapters = t.lists?.heritageChapters || heritageStory.chapters;
   const cards = t.kisanHome?.cards || [];
+  const x = t.extra || {};
+  const foundation = x.foundationCeremony || {};
+  const kbTimeline = x.kisanTimeline || [];
+  const statusText = `${x.statusLabel || 'Status'}: ${x.verified || 'verified'}`;
 
   return (
     <>
@@ -64,7 +68,7 @@ export default function HeritageContent() {
                     <h3>{copy.title}</h3>
                     <p>{copy.body}</p>
                     <p className="heritage-source">
-                      {p.source}: {copy.source || chapter.source}
+                      {p.source || x.sourceLabel}: {copy.source || chapter.source}
                     </p>
                     {chapter.image ? (
                       <figure className="story-figure">
@@ -76,8 +80,8 @@ export default function HeritageContent() {
                         role="img"
                         aria-label={`${copy.title}`}
                       >
-                        <p>Photograph pending</p>
-                        <span>Upload archival image to complete this chapter</span>
+                        <p>{x.photoPending}</p>
+                        <span>{x.photoPendingHint}</span>
                       </div>
                     )}
                   </div>
@@ -100,27 +104,27 @@ export default function HeritageContent() {
             <Reveal as="article" className="kb-card">
               <h3>{cards[0]?.title || 'Why established'}</h3>
               <p>{cards[0]?.text || kisanBhavan.whyEstablished.text}</p>
-              <span className="kb-status">Status: {kisanBhavan.whyEstablished.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={60}>
               <h3>{cards[1]?.title || 'Historical significance'}</h3>
               <p>{cards[1]?.text || kisanBhavan.historicalSignificance.text}</p>
-              <span className="kb-status">Status: {kisanBhavan.historicalSignificance.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={120}>
-              <h3>Foundation ceremony</h3>
-              <p>{kisanBhavan.foundationCeremony.text}</p>
-              <span className="kb-status">Status: {kisanBhavan.foundationCeremony.status}</span>
+              <h3>{foundation.title || 'Foundation ceremony'}</h3>
+              <p>{foundation.text || kisanBhavan.foundationCeremony.text}</p>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={180}>
               <h3>{cards[2]?.title || 'H. D. Deve Gowda'}</h3>
               <p>{cards[2]?.text || kisanBhavan.deveGowda.text}</p>
-              <span className="kb-status">Status: {kisanBhavan.deveGowda.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={220}>
               <h3>{cards[3]?.title || 'Krishan Bir Chaudhary’s role'}</h3>
               <p>{cards[3]?.text || kisanBhavan.roleOfKrishanBir.text}</p>
-              <span className="kb-status">Status: {kisanBhavan.roleOfKrishanBir.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
           </div>
 
@@ -129,15 +133,18 @@ export default function HeritageContent() {
             <h2>{p.timelineTitle}</h2>
           </Reveal>
           <ol className="kb-timeline">
-            {kisanBhavan.timeline.map((item, i) => (
-              <Reveal key={item.title} as="li" className={`kb-timeline-item is-${item.status}`} delay={i * 50}>
-                <time>{item.when}</time>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.what}</p>
-                </div>
-              </Reveal>
-            ))}
+            {kisanBhavan.timeline.map((item, i) => {
+              const tr = kbTimeline[i] || item;
+              return (
+                <Reveal key={item.title} as="li" className={`kb-timeline-item is-${item.status}`} delay={i * 50}>
+                  <time>{item.when}</time>
+                  <div>
+                    <h3>{tr.title}</h3>
+                    <p>{tr.what}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </ol>
 
           <Reveal className="section-head" style={{ marginTop: 56 }}>

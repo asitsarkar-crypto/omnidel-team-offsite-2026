@@ -18,6 +18,11 @@ export default function BksContent() {
   const p = t.pages?.bks || {};
   const copy = t.lists?.bksCopy || bks;
   const cards = t.kisanHome?.cards || [];
+  const x = t.extra || {};
+  const ui = x.bksUi || {};
+  const timeline = x.heritageTimeline || [];
+  const foundation = x.foundationCeremony || {};
+  const statusText = `${x.statusLabel || 'Status'}: ${x.verified || 'verified'}`;
 
   return (
     <>
@@ -54,7 +59,7 @@ export default function BksContent() {
             <h2>Bharatiya Krishak Samaj</h2>
             <p className="lede">{copy.formation1955}</p>
             <p className="mt-4">
-              Also known as: {bks.alternateNames.join(' · ')}
+              {x.alsoKnownAs}: {bks.alternateNames.join(' · ')}
             </p>
             <a
               className="btn btn-solid mt-6"
@@ -86,8 +91,8 @@ export default function BksContent() {
             <p>{copy.vision}</p>
           </Reveal>
           <Reveal delay={80}>
-            <p className="kicker">Legacy</p>
-            <h2>A continuing national tradition</h2>
+            <p className="kicker">{ui.legacyKicker}</p>
+            <h2>{ui.legacyTitle}</h2>
             <p>{copy.legacy}</p>
           </Reveal>
         </div>
@@ -96,20 +101,25 @@ export default function BksContent() {
       <section className="band muted-band">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="kicker">Major milestones</p>
-            <h2>From 1955 founding tradition to today’s leadership</h2>
+            <p className="kicker">{ui.milestonesKicker}</p>
+            <h2>{ui.milestonesTitle}</h2>
           </Reveal>
           <div className="heritage-rail">
-            {bks.heritageTimeline.map((item, i) => (
-              <Reveal key={item.when + item.title} className="heritage-card" delay={i * 50} as="article">
-                <div className="heritage-year">{item.when}</div>
-                <div className="heritage-body">
-                  <h3>{item.title}</h3>
-                  <p>{item.what}</p>
-                  <p className="heritage-source">Source: {item.source}</p>
-                </div>
-              </Reveal>
-            ))}
+            {bks.heritageTimeline.map((item, i) => {
+              const tr = timeline[i] || item;
+              return (
+                <Reveal key={item.when + item.title} className="heritage-card" delay={i * 50} as="article">
+                  <div className="heritage-year">{item.when}</div>
+                  <div className="heritage-body">
+                    <h3>{tr.title}</h3>
+                    <p>{tr.what}</p>
+                    <p className="heritage-source">
+                      {x.sourceLabel}: {tr.source || item.source}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -118,15 +128,17 @@ export default function BksContent() {
         <div className="wrap stats-strip">
           <Reveal className="stat-block">
             <strong>1955</strong>
-            <span>Founding year cited for Bharat Krishak Samaj</span>
+            <span>{ui.stat1955}</span>
           </Reveal>
           <Reveal className="stat-block" delay={60}>
             <strong>1959</strong>
-            <span>World Agriculture Fair opens in New Delhi</span>
+            <span>{ui.stat1959}</span>
           </Reveal>
           <Reveal className="stat-block" delay={120}>
-            <strong>Today</strong>
-            <span>President: {profile.name}</span>
+            <strong>{ui.statTodayLabel}</strong>
+            <span>
+              {ui.presidentPrefix}: {profile.name}
+            </span>
           </Reveal>
         </div>
       </section>
@@ -134,12 +146,12 @@ export default function BksContent() {
       <section className="band muted-band">
         <div className="wrap split">
           <Reveal>
-            <p className="kicker">Philosophy</p>
-            <h2>Why the organisation exists</h2>
+            <p className="kicker">{ui.philosophyKicker}</p>
+            <h2>{ui.philosophyTitle}</h2>
             <p>{copy.philosophy}</p>
           </Reveal>
           <Reveal delay={80}>
-            <p className="kicker">Objectives</p>
+            <p className="kicker">{ui.objectivesKicker}</p>
             <ul className="issue-copy-list">
               {(copy.objectives || bks.objectives).map((o) => (
                 <li key={o}>{o}</li>
@@ -152,8 +164,8 @@ export default function BksContent() {
       <section className="band">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="kicker">National contribution</p>
-            <h2>How organised farmer power served the country</h2>
+            <p className="kicker">{ui.contributionKicker}</p>
+            <h2>{ui.contributionTitle}</h2>
           </Reveal>
           <ul className="contribution-grid">
             {(copy.nationalContribution || bks.nationalContribution).map((item, i) => (
@@ -169,13 +181,13 @@ export default function BksContent() {
       <section className="band muted-band">
         <div className="wrap split">
           <Reveal>
-            <p className="kicker">Today</p>
-            <h2>Relevance in the present agri-ecosystem</h2>
+            <p className="kicker">{ui.todayKicker}</p>
+            <h2>{ui.todayTitle}</h2>
             <p>{copy.today}</p>
           </Reveal>
           <Reveal delay={80}>
-            <p className="kicker">Forward</p>
-            <h2>Strategic direction</h2>
+            <p className="kicker">{ui.forwardKicker}</p>
+            <h2>{ui.forwardTitle}</h2>
             <p>{copy.future}</p>
           </Reveal>
         </div>
@@ -192,27 +204,27 @@ export default function BksContent() {
             <Reveal as="article" className="kb-card">
               <h3>{cards[0]?.title || 'Why it was established'}</h3>
               <p>{cards[0]?.text || kisanBhavan.whyEstablished.text}</p>
-              <span className="kb-status">{kisanBhavan.whyEstablished.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={60}>
               <h3>{cards[1]?.title || 'Historical significance'}</h3>
               <p>{cards[1]?.text || kisanBhavan.historicalSignificance.text}</p>
-              <span className="kb-status">{kisanBhavan.historicalSignificance.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={120}>
-              <h3>Foundation ceremony</h3>
-              <p>{kisanBhavan.foundationCeremony.text}</p>
-              <span className="kb-status">{kisanBhavan.foundationCeremony.status}</span>
+              <h3>{foundation.title || 'Foundation ceremony'}</h3>
+              <p>{foundation.text || kisanBhavan.foundationCeremony.text}</p>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={180}>
               <h3>{cards[2]?.title || 'H. D. Deve Gowda'}</h3>
               <p>{cards[2]?.text || kisanBhavan.deveGowda.text}</p>
-              <span className="kb-status">{kisanBhavan.deveGowda.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
             <Reveal as="article" className="kb-card" delay={220}>
               <h3>{cards[3]?.title || 'Krishan Bir Chaudhary’s role'}</h3>
               <p>{cards[3]?.text || kisanBhavan.roleOfKrishanBir.text}</p>
-              <span className="kb-status">{kisanBhavan.roleOfKrishanBir.status}</span>
+              <span className="kb-status">{statusText}</span>
             </Reveal>
           </div>
           <div className="kb-photo-grid kb-photo-grid-live">
@@ -229,7 +241,9 @@ export default function BksContent() {
               ) : (
                 <div key={photo.caption} className="kb-photo-slot" aria-label={caption}>
                   <p className="kb-photo-caption">{caption}</p>
-                  <p className="kb-photo-note">Asset pending — {photo.note}</p>
+                  <p className="kb-photo-note">
+                    {x.assetPending} — {photo.note}
+                  </p>
                 </div>
               );
             })}
@@ -257,14 +271,12 @@ export default function BksContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit {new URL(links.bksOfficial).hostname}
+              {ui.visitHost} {new URL(links.bksOfficial).hostname}
             </a>
           </Reveal>
           <aside className="quote-panel">
             <p className="quote-hi">बंगाल के लिए किसान की गरिमा, आत्मनिर्भर कृषि और व्यावहारिक ज्ञान।</p>
-            <p className="quote-en">
-              Farmer dignity, self-reliant agriculture, and practical knowledge for Bengal.
-            </p>
+            <p className="quote-en">{ui.quoteEn}</p>
           </aside>
         </div>
       </section>
@@ -285,15 +297,11 @@ export default function BksContent() {
             ))}
           </ul>
           <Reveal>
-            <p className="archive-reco">
-              Still welcome for enrichment: Krishak Samachar / Farmers’ Forum covers, World
-              Agriculture Fair 1959 photographs, high-resolution Deshmukh portraits, and primary
-              Kisan Bhavan ceremony albums.
-            </p>
+            <p className="archive-reco">{ui.archiveReco}</p>
           </Reveal>
           <Reveal className="mt-4">
             <p className="section-deck">
-              Storytelling chapters also live on the dedicated Heritage page ({heritageStory.title}).
+              {ui.heritageNotePrefix} ({t.pages?.heritage?.title || heritageStory.title}).
             </p>
           </Reveal>
         </div>
