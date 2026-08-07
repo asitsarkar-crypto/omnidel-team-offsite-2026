@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import Reveal from '../Reveal';
 import { branding, kisanBhavan } from '../../lib/data';
+import { getGalleryCaption } from '../../lib/i18n-gallery';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeKisanBhavan() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const k = t.kisanHome || {};
   const photos = (kisanBhavan.photos || []).filter((p) => p.status === 'available' && p.src);
   const cards = k.cards || [];
@@ -48,17 +49,20 @@ export default function HomeKisanBhavan() {
 
         {photos.length ? (
           <div className="kb-photo-grid kb-photo-grid-live" style={{ marginTop: 36 }}>
-            {photos.map((photo, i) => (
-              <Reveal
-                key={photo.src}
-                as="figure"
-                className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
-                delay={i * 50}
-              >
-                <img src={photo.src} alt={photo.caption} loading="lazy" />
-                <figcaption>{photo.caption}</figcaption>
-              </Reveal>
-            ))}
+            {photos.map((photo, i) => {
+              const caption = getGalleryCaption(lang, photo.src, photo.caption);
+              return (
+                <Reveal
+                  key={photo.src}
+                  as="figure"
+                  className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
+                  delay={i * 50}
+                >
+                  <img src={photo.src} alt={caption} loading="lazy" />
+                  <figcaption>{caption}</figcaption>
+                </Reveal>
+              );
+            })}
           </div>
         ) : null}
 

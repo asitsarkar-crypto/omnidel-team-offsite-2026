@@ -10,10 +10,11 @@ import {
   links,
   profile,
 } from '../../lib/data';
+import { getGalleryCaption } from '../../lib/i18n-gallery';
 import { useLanguage } from '../LanguageProvider';
 
 export default function BksContent() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const p = t.pages?.bks || {};
   const copy = t.lists?.bksCopy || bks;
   const cards = t.kisanHome?.cards || [];
@@ -215,22 +216,23 @@ export default function BksContent() {
             </Reveal>
           </div>
           <div className="kb-photo-grid kb-photo-grid-live">
-            {kisanBhavan.photos.map((photo) =>
-              photo.src ? (
+            {kisanBhavan.photos.map((photo) => {
+              const caption = getGalleryCaption(lang, photo.src, photo.caption);
+              return photo.src ? (
                 <figure
                   key={photo.src}
                   className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
                 >
-                  <img src={photo.src} alt={photo.caption} loading="lazy" />
-                  <figcaption>{photo.caption}</figcaption>
+                  <img src={photo.src} alt={caption} loading="lazy" />
+                  <figcaption>{caption}</figcaption>
                 </figure>
               ) : (
-                <div key={photo.caption} className="kb-photo-slot" aria-label={photo.caption}>
-                  <p className="kb-photo-caption">{photo.caption}</p>
+                <div key={photo.caption} className="kb-photo-slot" aria-label={caption}>
+                  <p className="kb-photo-caption">{caption}</p>
                   <p className="kb-photo-note">Asset pending — {photo.note}</p>
                 </div>
-              )
-            )}
+              );
+            })}
           </div>
           <Reveal className="mt-8">
             <Link className="btn btn-solid" href="/heritage#kisan-bhavan">

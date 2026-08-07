@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import Reveal from '../Reveal';
 import { branding, heritageStory, kisanBhavan, links, profile } from '../../lib/data';
+import { getGalleryCaption } from '../../lib/i18n-gallery';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HeritageContent() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const p = t.pages?.heritage || {};
   const chapters = t.lists?.heritageChapters || heritageStory.chapters;
   const cards = t.kisanHome?.cards || [];
@@ -144,24 +145,25 @@ export default function HeritageContent() {
             <h2>{p.photosTitle}</h2>
           </Reveal>
           <div className="kb-photo-grid kb-photo-grid-live">
-            {kisanBhavan.photos.map((photo, i) =>
-              photo.src ? (
+            {kisanBhavan.photos.map((photo, i) => {
+              const caption = getGalleryCaption(lang, photo.src, photo.caption);
+              return photo.src ? (
                 <Reveal
                   key={photo.src}
                   as="figure"
                   className={`kb-photo-live is-${photo.orientation || 'landscape'}`}
                   delay={i * 40}
                 >
-                  <img src={photo.src} alt={photo.caption} loading="lazy" />
-                  <figcaption>{photo.caption}</figcaption>
+                  <img src={photo.src} alt={caption} loading="lazy" />
+                  <figcaption>{caption}</figcaption>
                 </Reveal>
               ) : (
                 <Reveal key={photo.caption} as="div" className="kb-photo-slot" delay={i * 40}>
-                  <p className="kb-photo-caption">{photo.caption}</p>
+                  <p className="kb-photo-caption">{caption}</p>
                   <span className="kb-photo-note">{photo.note}</span>
                 </Reveal>
-              )
-            )}
+              );
+            })}
           </div>
           {kisanBhavan.assetsRequired?.length ? (
             <ul className="kb-asset-list">

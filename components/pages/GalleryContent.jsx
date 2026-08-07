@@ -3,6 +3,7 @@
 import Reveal from '../Reveal';
 import SocialIcons from '../SocialIcons';
 import { gallery, social } from '../../lib/data';
+import { getGalleryCaption } from '../../lib/i18n-gallery';
 import { useLanguage } from '../LanguageProvider';
 
 const groupOrder = [
@@ -18,7 +19,7 @@ const groupOrder = [
 ];
 
 export default function GalleryContent() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const p = t.pages?.gallery || {};
   const groupLabels = p.groups || {};
 
@@ -61,19 +62,22 @@ export default function GalleryContent() {
               </h2>
             </Reveal>
             <div className="gallery-grid">
-              {group.items.map((item, i) => (
-                <Reveal
-                  key={item.src}
-                  as="figure"
-                  className={`gallery-card is-${item.orientation || 'landscape'}`}
-                  delay={(i % 6) * 40}
-                >
-                  <div className="gallery-frame">
-                    <img src={item.src} alt={item.alt} loading="lazy" />
-                  </div>
-                  <figcaption>{item.caption}</figcaption>
-                </Reveal>
-              ))}
+              {group.items.map((item, i) => {
+                const caption = getGalleryCaption(lang, item.src, item.caption);
+                return (
+                  <Reveal
+                    key={item.src}
+                    as="figure"
+                    className={`gallery-card is-${item.orientation || 'landscape'}`}
+                    delay={(i % 6) * 40}
+                  >
+                    <div className="gallery-frame">
+                      <img src={item.src} alt={caption} loading="lazy" />
+                    </div>
+                    <figcaption>{caption}</figcaption>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
