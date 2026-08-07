@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { nav, profile } from '../lib/data';
+import { branding, links, nav, profile } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from './LanguageProvider';
@@ -29,8 +29,17 @@ export default function SiteNav() {
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav-inner">
         <Link className="nav-brand" href="/">
-          <span className="nav-brand-en">{profile.name}</span>
-          <span className="nav-brand-hi">{t.hero.nameLocal}</span>
+          <img
+            className="nav-bks-logo"
+            src={branding.bksLogo}
+            alt={branding.bksLogoAlt}
+            width={44}
+            height={44}
+          />
+          <span className="nav-brand-text">
+            <span className="nav-brand-en">{profile.name}</span>
+            <span className="nav-brand-hi">{t.hero.nameLocal}</span>
+          </span>
         </Link>
 
         <div className="nav-tools">
@@ -51,8 +60,25 @@ export default function SiteNav() {
 
         <nav id="site-menu" className="nav-links" aria-label="Primary">
           {nav.map((item) => {
-            const key = navKeyFromHref(item.href);
-            const label = key && t.nav[key] ? t.nav[key] : item.label;
+            const key = navKeyFromHref(item.href) || item.id;
+            const label =
+              (key && t.nav[key]) ||
+              (item.external ? t.nav.bksExternal || item.label : item.label);
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.id || item.href}
+                  href={item.href || links.bksOfficial}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-external"
+                >
+                  {label}
+                </a>
+              );
+            }
+
             const active =
               item.href === '/'
                 ? pathname === '/'

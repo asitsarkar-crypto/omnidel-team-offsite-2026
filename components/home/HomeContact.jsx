@@ -2,14 +2,15 @@
 
 import Reveal from '../Reveal';
 import GoogleFormEmbed from '../contact/GoogleFormEmbed';
-import { contact } from '../../lib/data';
+import SocialIcons from '../SocialIcons';
+import { contact, social } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeContact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="band scroll-mt-[var(--nav-h)]">
+    <section id="contact" className="band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
       <div className="wrap">
         <Reveal className="section-head">
           <p className="kicker">{t.contact.kicker}</p>
@@ -40,11 +41,21 @@ export default function HomeContact() {
           <Reveal delay={120} as="div">
             <p className="kicker">{t.contact.office}</p>
             <p className="text-[var(--ink)]">{contact.office}</p>
-            <a className="text-link mt-2 inline-block" href={contact.mapLink} target="_blank" rel="noopener noreferrer">
+            <a
+              className="text-link mt-2 inline-block"
+              href={contact.mapLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {t.cta.openMaps}
             </a>
           </Reveal>
         </div>
+
+        <Reveal className="mb-10">
+          <p className="kicker">Social</p>
+          <SocialIcons items={social} />
+        </Reveal>
 
         <div className="mb-8 flex flex-wrap gap-3">
           <a className="btn btn-solid" href="#enquiry-form">

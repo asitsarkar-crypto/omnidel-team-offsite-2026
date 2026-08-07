@@ -3,8 +3,9 @@ import { absoluteUrl } from '../lib/seo';
 
 export default function sitemap() {
   const now = new Date();
+  const routes = nav.filter((item) => !item.external);
 
-  return nav.map((item) => ({
+  return routes.map((item) => ({
     url: absoluteUrl(item.href),
     lastModified: now,
     changeFrequency: item.href === '/' ? 'weekly' : 'monthly',

@@ -1,6 +1,14 @@
-import JsonLd from '../../components/JsonLd';
+import Link from 'next/link';
 import Reveal from '../../components/Reveal';
-import { bks, profile } from '../../lib/data';
+import JsonLd from '../../components/JsonLd';
+import {
+  branding,
+  bks,
+  heritageStory,
+  kisanBhavan,
+  links,
+  profile,
+} from '../../lib/data';
 import { breadcrumbJsonLd, buildMetadata, pageSeo } from '../../lib/seo';
 
 export const metadata = buildMetadata(pageSeo.bks);
@@ -21,7 +29,7 @@ export default function BksPage() {
           style={{ backgroundImage: "url('/photos/events/lamp-lighting.png')" }}
         />
         <div className="wrap page-hero-copy">
-          <p className="kicker light">Heritage &amp; mission</p>
+          <p className="kicker light">Organisation</p>
           <h1>
             {bks.name}
             <span className="hero-hi-sub"> {bks.nameHi}</span>
@@ -31,6 +39,31 @@ export default function BksPage() {
       </section>
 
       <section className="band">
+        <div className="wrap bks-brand-panel">
+          <Reveal className="bks-logo-card">
+            <img src={branding.bksLogo} alt={branding.bksLogoAlt} width={180} height={180} />
+            <p className="bks-logo-caption">{bks.nameHi}</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="kicker">Official identity</p>
+            <h2>Bharatiya Krishak Samaj</h2>
+            <p className="lede">{bks.formation1955}</p>
+            <p className="mt-4">
+              Also known as: {bks.alternateNames.join(' · ')}
+            </p>
+            <a
+              className="btn btn-solid mt-6"
+              href={links.bksOfficial}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Bharatiya Kisan Samaj (BKS)
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="band muted-band">
         <div className="wrap narrow">
           <Reveal>
             <p className="kicker">Research note</p>
@@ -40,17 +73,27 @@ export default function BksPage() {
         </div>
       </section>
 
+      <section className="band">
+        <div className="wrap split">
+          <Reveal>
+            <p className="kicker">Vision</p>
+            <h2>What the organisation stands for</h2>
+            <p>{bks.vision}</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="kicker">Legacy</p>
+            <h2>A continuing national tradition</h2>
+            <p>{bks.legacy}</p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="band muted-band">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="kicker">Visual timeline</p>
+            <p className="kicker">Major milestones</p>
             <h2>From 1955 founding tradition to today’s leadership</h2>
-            <p className="section-deck">
-              Key milestones verified from public organisational histories, registration records,
-              and presidential archives — not invented chronology.
-            </p>
           </Reveal>
-
           <div className="heritage-rail">
             {bks.heritageTimeline.map((item, i) => (
               <Reveal key={item.when + item.title} className="heritage-card" delay={i * 50} as="article">
@@ -91,7 +134,7 @@ export default function BksPage() {
             <p>{bks.philosophy}</p>
           </Reveal>
           <Reveal delay={80}>
-            <p className="kicker">Objectives now</p>
+            <p className="kicker">Objectives</p>
             <ul className="issue-copy-list">
               {bks.objectives.map((o) => (
                 <li key={o}>{o}</li>
@@ -102,6 +145,23 @@ export default function BksPage() {
       </section>
 
       <section className="band">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">National contribution</p>
+            <h2>How organised farmer power served the country</h2>
+          </Reveal>
+          <ul className="contribution-grid">
+            {bks.nationalContribution.map((item, i) => (
+              <Reveal key={item} as="li" delay={i * 60} className="contribution-item">
+                <span>0{i + 1}</span>
+                <p>{item}</p>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="band muted-band">
         <div className="wrap split">
           <Reveal>
             <p className="kicker">Today</p>
@@ -116,6 +176,51 @@ export default function BksPage() {
         </div>
       </section>
 
+      <section className="band">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Kisan Bhavan</p>
+            <h2>{kisanBhavan.title}</h2>
+            <p className="section-deck">{kisanBhavan.lead}</p>
+          </Reveal>
+          <div className="kisan-bhavan-grid">
+            <Reveal as="article" className="kb-card">
+              <h3>Why it was established</h3>
+              <p>{kisanBhavan.whyEstablished.text}</p>
+              <span className="kb-status">{kisanBhavan.whyEstablished.status}</span>
+            </Reveal>
+            <Reveal as="article" className="kb-card" delay={60}>
+              <h3>Historical significance</h3>
+              <p>{kisanBhavan.historicalSignificance.text}</p>
+              <span className="kb-status">{kisanBhavan.historicalSignificance.status}</span>
+            </Reveal>
+            <Reveal as="article" className="kb-card" delay={120}>
+              <h3>Foundation ceremony</h3>
+              <p>{kisanBhavan.foundationCeremony.text}</p>
+              <span className="kb-status is-placeholder">{kisanBhavan.foundationCeremony.status}</span>
+            </Reveal>
+            <Reveal as="article" className="kb-card" delay={180}>
+              <h3>H. D. Deve Gowda</h3>
+              <p>{kisanBhavan.deveGowda.text}</p>
+              <span className="kb-status is-placeholder">{kisanBhavan.deveGowda.status}</span>
+            </Reveal>
+          </div>
+          <div className="kb-photo-grid">
+            {kisanBhavan.photos.map((photo) => (
+              <div key={photo.caption} className="kb-photo-slot" aria-label={photo.caption}>
+                <p className="kb-photo-caption">{photo.caption}</p>
+                <p className="kb-photo-note">Asset pending — {photo.note}</p>
+              </div>
+            ))}
+          </div>
+          <Reveal className="mt-8">
+            <Link className="text-link" href="/heritage">
+              Open full heritage storytelling →
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="band muted-band">
         <div className="wrap split">
           <Reveal>
@@ -124,11 +229,11 @@ export default function BksPage() {
             <p>{bks.westBengal}</p>
             <a
               className="text-link"
-              href="https://www.bkswbengal.org/"
+              href={links.bksOfficial}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit bkswbengal.org
+              Visit {new URL(links.bksOfficial).hostname}
             </a>
           </Reveal>
           <aside className="quote-panel">
@@ -157,10 +262,14 @@ export default function BksPage() {
           </ul>
           <Reveal>
             <p className="archive-reco">
-              Recommended archival sourcing (not yet in this portfolio): official BKS logo
-              package, Krishak Samachar / Farmers’ Forum covers, World Agriculture Fair 1959
-              photographs, and a high-resolution portrait of Dr. Panjabrao S. Deshmukh from
-              public-domain or licensed collections.
+              Still welcome for enrichment: Krishak Samachar / Farmers’ Forum covers, World
+              Agriculture Fair 1959 photographs, high-resolution Deshmukh portraits, and primary
+              Kisan Bhavan ceremony albums.
+            </p>
+          </Reveal>
+          <Reveal className="mt-4">
+            <p className="section-deck">
+              Storytelling chapters also live on the dedicated Heritage page ({heritageStory.title}).
             </p>
           </Reveal>
         </div>

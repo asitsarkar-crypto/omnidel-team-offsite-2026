@@ -1,21 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-import { contact, nav, orgs, profile, social } from '../lib/data';
+import { branding, contact, links, nav, orgs, profile, social } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
+import SocialIcons from './SocialIcons';
 import { useLanguage } from './LanguageProvider';
 
 export default function SiteFooter() {
   const { t } = useLanguage();
+  const internalNav = nav.filter((item) => !item.external).slice(0, 7);
 
   return (
     <footer className="site-footer">
       <div className="wrap footer-top">
         <div>
-          <p className="footer-name">{profile.name}</p>
-          <p className="footer-hi">{t.hero.nameLocal}</p>
-          <p className="footer-tag">{t.hero.shortTitle}</p>
+          <div className="footer-brand-row">
+            <img
+              src={branding.bksLogo}
+              alt={branding.bksLogoAlt}
+              width={64}
+              height={64}
+              className="footer-bks-logo"
+            />
+            <div>
+              <p className="footer-name">{profile.name}</p>
+              <p className="footer-hi">{t.hero.nameLocal}</p>
+              <p className="footer-tag">{t.hero.shortTitle}</p>
+            </div>
+          </div>
           <p className="footer-contact">
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </p>
@@ -38,6 +51,9 @@ export default function SiteFooter() {
             {t.contact.residence}: {contact.residence}
           </p>
           <div className="mt-5">
+            <SocialIcons items={social} className="social-icons-footer" />
+          </div>
+          <div className="mt-5">
             <LanguageSwitcher />
           </div>
         </div>
@@ -46,7 +62,7 @@ export default function SiteFooter() {
           <div>
             <p className="footer-label">{t.footer.explore}</p>
             <ul>
-              {nav.slice(0, 6).map((item) => {
+              {internalNav.map((item) => {
                 const key = navKeyFromHref(item.href);
                 return (
                   <li key={item.href}>
@@ -59,13 +75,11 @@ export default function SiteFooter() {
           <div>
             <p className="footer-label">{t.footer.connect}</p>
             <ul>
-              {social.map((s) => (
-                <li key={s.id}>
-                  <a href={s.href} target="_blank" rel="noopener noreferrer">
-                    {s.label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href={links.bksOfficial} target="_blank" rel="noopener noreferrer">
+                  {t.nav.bksExternal || links.bksOfficialLabel}
+                </a>
+              </li>
               {orgs.map((o) => (
                 <li key={o.href}>
                   <a href={o.href} target="_blank" rel="noopener noreferrer">

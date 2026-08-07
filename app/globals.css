@@ -126,10 +126,32 @@ code {
 
 .nav-brand {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
   color: inherit;
   min-width: 0;
+}
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nav-bks-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(184, 155, 76, 0.45);
+}
+
+.nav-external {
+  font-weight: 700 !important;
 }
 
 .nav-brand-en {
@@ -1730,6 +1752,347 @@ h2 {
 @media (max-width: 820px) {
   main {
     padding-bottom: 72px;
+  }
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-icon-link {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 155, 76, 0.45);
+  color: var(--field-deep);
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s var(--ease), background 0.25s, color 0.25s;
+}
+
+.social-icon-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-icon-link:hover {
+  transform: translateY(-2px);
+  background: var(--field);
+  color: #fff;
+  border-color: var(--field);
+}
+
+.social-icons-footer .social-icon-link {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--grain-soft);
+  border-color: rgba(232, 217, 168, 0.35);
+}
+
+.social-icons-footer .social-icon-link:hover {
+  background: var(--grain);
+  color: var(--field-deep);
+}
+
+.footer-brand-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.footer-bks-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* FAQ redesign */
+.faq-band {
+  background:
+    radial-gradient(700px 280px at 10% 0%, rgba(184, 155, 76, 0.12), transparent 60%),
+    linear-gradient(180deg, #eef3ee 0%, #f7f9f5 100%);
+}
+
+.faq-wrap {
+  width: min(860px, calc(100% - 40px));
+}
+
+.faq-list {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-item {
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(11, 28, 20, 0.04);
+}
+
+.faq-item.is-open {
+  border-color: rgba(184, 155, 76, 0.55);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+}
+
+.faq-q-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  font-weight: 560;
+  line-height: 1.35;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(31, 77, 56, 0.08);
+  color: var(--field);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.faq-item.is-open .faq-icon {
+  background: var(--field);
+  color: #fff;
+}
+
+.faq-answer {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--stroke);
+}
+
+.faq-answer p {
+  margin: 0;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+/* BKS / heritage storytelling */
+.bks-brand-panel {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.bks-logo-card {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--stroke);
+}
+
+.bks-logo-card img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.bks-logo-caption {
+  font-family: var(--font-hi);
+  color: var(--field);
+  font-weight: 600;
+}
+
+.contribution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.contribution-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-top: 2px solid var(--grain);
+}
+
+.contribution-item span {
+  font-family: var(--font-display);
+  color: var(--grain);
+  font-size: 1.4rem;
+}
+
+.kisan-bhavan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.kb-card {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--stroke);
+}
+
+.kb-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+}
+
+.kb-status {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--field);
+}
+
+.kb-status.is-placeholder {
+  color: #8a5a1c;
+}
+
+.kb-photo-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kb-photo-slot,
+.story-figure-placeholder {
+  min-height: 180px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 20px;
+  border: 1px dashed rgba(184, 155, 76, 0.55);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--muted);
+}
+
+.kb-photo-caption,
+.story-figure-placeholder p {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.story-intro {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.story-logo img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.story-timeline {
+  list-style: none;
+  display: grid;
+  gap: 28px;
+}
+
+.story-chapter {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--stroke);
+}
+
+.story-chapter.is-placeholder {
+  background: rgba(255, 252, 245, 0.95);
+}
+
+.story-meta {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.story-index {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--grain);
+}
+
+.story-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(31, 77, 56, 0.1);
+  color: var(--field);
+}
+
+.story-badge.is-verified {
+  background: rgba(31, 77, 56, 0.12);
+}
+
+.story-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  margin-bottom: 10px;
+}
+
+.story-figure {
+  margin-top: 18px;
+}
+
+.story-figure img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.story-cta {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .bks-brand-panel,
+  .story-intro,
+  .story-chapter,
+  .contribution-grid,
+  .kisan-bhavan-grid,
+  .kb-photo-grid {
+    grid-template-columns: 1fr;
   }
 }
 
