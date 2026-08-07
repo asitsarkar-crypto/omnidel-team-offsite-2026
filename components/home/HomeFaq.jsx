@@ -3,16 +3,18 @@
 import { useState } from 'react';
 import Reveal from '../Reveal';
 import { faq } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeFaq() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="band muted-band scroll-mt-[var(--nav-h)]">
       <div className="wrap narrow">
         <Reveal className="section-head">
-          <p className="kicker">FAQ</p>
-          <h2>Questions people ask</h2>
+          <p className="kicker">{t.faq.kicker}</p>
+          <h2>{t.faq.title}</h2>
         </Reveal>
         <div className="grid gap-3">
           {faq.map((item, index) => {

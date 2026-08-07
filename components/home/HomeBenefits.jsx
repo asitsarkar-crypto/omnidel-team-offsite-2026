@@ -1,13 +1,18 @@
+'use client';
+
 import Reveal from '../Reveal';
 import { benefits, vision } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeBenefits() {
+  const { t } = useLanguage();
+
   return (
     <section id="benefits" className="band muted-band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="kicker">Benefits</p>
-          <h2>What stakeholders gain</h2>
+          <p className="kicker">{t.benefits.kicker}</p>
+          <h2>{t.benefits.title}</h2>
           <p className="section-deck">{vision.statement}</p>
         </Reveal>
         <div className="grid gap-8 sm:grid-cols-2">

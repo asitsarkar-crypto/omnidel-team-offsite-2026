@@ -1,16 +1,19 @@
+'use client';
+
 import Reveal from '../Reveal';
 import { awards, proofRibbon, whyChoose } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeWhyUs() {
+  const { t } = useLanguage();
+
   return (
     <section id="why-us" className="band muted-band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="kicker">Why Choose Us</p>
-          <h2>Trust earned in ministries, courts, and fields</h2>
-          <p className="section-deck">
-            Institutional roles, legal victories, and national recognition — not marketing claims.
-          </p>
+          <p className="kicker">{t.why.kicker}</p>
+          <h2>{t.why.title}</h2>
+          <p className="section-deck">{t.why.deck}</p>
         </Reveal>
 
         <div className="mb-10 flex flex-wrap gap-3">

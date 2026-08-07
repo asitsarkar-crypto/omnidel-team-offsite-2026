@@ -1,15 +1,19 @@
+'use client';
+
 import Reveal from '../Reveal';
 import { socialProof, testimonials, tvChannels } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeTestimonials() {
+  const { t } = useLanguage();
   const quote = testimonials[0];
 
   return (
     <section id="testimonials" className="band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="kicker">Testimonials &amp; recognition</p>
-          <h2>Voices and platforms that matter</h2>
+          <p className="kicker">{t.testimonials.kicker}</p>
+          <h2>{t.testimonials.title}</h2>
         </Reveal>
 
         {quote ? (
@@ -35,7 +39,7 @@ export default function HomeTestimonials() {
 
         <Reveal className="mt-10">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--field)]">
-            Television platforms
+            {t.testimonials.tvLabel}
           </p>
           <p className="text-[var(--muted)]">{tvChannels.join(' · ')}</p>
         </Reveal>

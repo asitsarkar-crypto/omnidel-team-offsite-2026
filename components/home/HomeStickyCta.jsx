@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { contact } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeStickyCta() {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function HomeStickyCta() {
           href="#contact"
           className="flex-1 rounded bg-[var(--field)] px-3 py-3 text-center text-sm font-semibold text-white"
         >
-          Contact Us
+          {t.cta.contactUs}
         </a>
         <a
           href={contact.whatsappUrl}
@@ -30,7 +32,7 @@ export default function HomeStickyCta() {
           rel="noopener noreferrer"
           className="flex-1 rounded border border-[var(--field)] px-3 py-3 text-center text-sm font-semibold text-[var(--field)]"
         >
-          WhatsApp
+          {t.cta.whatsapp}
         </a>
       </div>
     </div>

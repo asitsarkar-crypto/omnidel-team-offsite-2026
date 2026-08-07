@@ -1,16 +1,19 @@
+'use client';
+
 import Reveal from '../Reveal';
 import { processSteps } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeProcess() {
+  const { t } = useLanguage();
+
   return (
     <section id="process" className="band scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="kicker">Process / How We Work</p>
-          <h2>From enquiry to public follow-through</h2>
-          <p className="section-deck">
-            A clear path for press, policy partners, farmer organisations, and collaborators.
-          </p>
+          <p className="kicker">{t.process.kicker}</p>
+          <h2>{t.process.title}</h2>
+          <p className="section-deck">{t.process.deck}</p>
         </Reveal>
         <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, i) => (

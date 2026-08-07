@@ -1,14 +1,21 @@
+'use client';
+
 import Link from 'next/link';
 import { contact, nav, orgs, profile, social } from '../lib/data';
+import { navKeyFromHref } from '../lib/i18n';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from './LanguageProvider';
 
 export default function SiteFooter() {
+  const { t } = useLanguage();
+
   return (
     <footer className="site-footer">
       <div className="wrap footer-top">
         <div>
           <p className="footer-name">{profile.name}</p>
-          <p className="footer-hi">{profile.nameHi}</p>
-          <p className="footer-tag">{profile.shortTitle}</p>
+          <p className="footer-hi">{t.hero.nameLocal}</p>
+          <p className="footer-tag">{t.hero.shortTitle}</p>
           <p className="footer-contact">
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </p>
@@ -21,28 +28,36 @@ export default function SiteFooter() {
             ))}
             <span aria-hidden="true"> · </span>
             <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
-              WhatsApp
+              {t.cta.whatsapp}
             </a>
           </p>
           <p className="mt-3 text-sm text-[rgba(232,217,168,0.85)]">
-            Office: {contact.office}
+            {t.contact.office}: {contact.office}
           </p>
-          <p className="text-sm text-[rgba(232,217,168,0.75)]">Residence: {contact.residence}</p>
+          <p className="text-sm text-[rgba(232,217,168,0.75)]">
+            {t.contact.residence}: {contact.residence}
+          </p>
+          <div className="mt-5">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         <div className="footer-cols">
           <div>
-            <p className="footer-label">Explore</p>
+            <p className="footer-label">{t.footer.explore}</p>
             <ul>
-              {nav.slice(0, 6).map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
+              {nav.slice(0, 6).map((item) => {
+                const key = navKeyFromHref(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link href={item.href}>{key && t.nav[key] ? t.nav[key] : item.label}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>
-            <p className="footer-label">Connect</p>
+            <p className="footer-label">{t.footer.connect}</p>
             <ul>
               {social.map((s) => (
                 <li key={s.id}>
@@ -59,7 +74,7 @@ export default function SiteFooter() {
                 </li>
               ))}
               <li>
-                <Link href="/contact">Contact / Enquiry</Link>
+                <Link href="/contact">{t.footer.contactEnquiry}</Link>
               </li>
             </ul>
           </div>
@@ -79,11 +94,11 @@ export default function SiteFooter() {
 
       <div className="wrap footer-bottom">
         <p>
-          {profile.name} · {profile.qualifications} · Bharatiya Krishak Samaj
+          {profile.name} · {profile.qualifications} · {t.hero.shortTitle}
         </p>
         <p className="mt-2 text-sm opacity-70">
           <a href={contact.mapLink} target="_blank" rel="noopener noreferrer">
-            View office on Google Maps
+            {t.footer.viewMap}
           </a>
         </p>
       </div>

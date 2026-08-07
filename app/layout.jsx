@@ -1,5 +1,6 @@
 import './globals.css';
 import JsonLd from '../components/JsonLd';
+import { LanguageProvider } from '../components/LanguageProvider';
 import SiteFooter from '../components/SiteFooter';
 import SiteNav from '../components/SiteNav';
 import { profile } from '../lib/data';
@@ -84,12 +85,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,700&family=Karla:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,700&family=Karla:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
           rel="stylesheet"
         />
         <meta name="theme-color" content="#0b1c14" />
@@ -103,12 +104,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <a className="skip" href="#main">
-          Skip to content
-        </a>
-        <SiteNav />
-        <main id="main">{children}</main>
-        <SiteFooter />
+        <LanguageProvider>
+          <a className="skip" href="#main">
+            Skip to content
+          </a>
+          <SiteNav />
+          <main id="main">{children}</main>
+          <SiteFooter />
+        </LanguageProvider>
       </body>
     </html>
   );
