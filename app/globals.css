@@ -141,12 +141,13 @@ code {
 }
 
 .nav-bks-logo {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   background: #fff;
   flex-shrink: 0;
+  padding: 2px;
   box-shadow: 0 0 0 2px rgba(184, 155, 76, 0.45);
 }
 
@@ -1842,11 +1843,12 @@ h2 {
 }
 
 .footer-bks-logo {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   background: #fff;
+  padding: 3px;
 }
 
 /* FAQ redesign — premium field/gold, not flat white/grey */
@@ -2004,8 +2006,9 @@ h2 {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   background: #fff;
+  padding: 4px;
   box-shadow: 0 16px 40px rgba(11, 28, 20, 0.12);
 }
 
@@ -2311,9 +2314,22 @@ h2 {
 }
 
 .bks-logo-card img {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.bks-logo-card img.bks-letterhead {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 0;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--stroke);
 }
 
 .bks-logo-caption {
@@ -2411,6 +2427,9 @@ h2 {
   width: 120px;
   height: 120px;
   object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 4px;
 }
 
 .story-timeline {

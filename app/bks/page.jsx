@@ -42,6 +42,13 @@ export default function BksPage() {
         <div className="wrap bks-brand-panel">
           <Reveal className="bks-logo-card">
             <img src={branding.bksLogo} alt={branding.bksLogoAlt} width={180} height={180} />
+            <img
+              src={branding.bksLetterhead}
+              alt="Bharatiya Krishak Samaj — official letterhead mark"
+              className="bks-letterhead"
+              width={220}
+              height={312}
+            />
             <p className="bks-logo-caption">{bks.nameHi}</p>
           </Reveal>
           <Reveal delay={80}>
