@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { archiveNav, branding, contact, links, nav, orgs, social } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
-import { vatika } from '../lib/vatika';
+import { platform } from '../lib/platform';
 import LanguageSwitcher from './LanguageSwitcher';
 import SocialIcons from './SocialIcons';
 import { useLanguage } from './LanguageProvider';
@@ -33,7 +33,7 @@ export default function SiteFooter() {
               className="footer-bks-logo"
             />
             <div>
-              <p className="footer-name">{vatika.name}</p>
+              <p className="footer-name">{platform.name}</p>
               <p className="footer-hi">{t.hero.nameLocal}</p>
               <p className="footer-tag">{t.hero.shortTitle}</p>
             </div>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
             </a>
           </p>
           <p className="mt-3 text-sm text-[rgba(232,217,168,0.85)]">
-            Joint initiative of KY21C and Bharatiya Krishak Samaj
+            BKS · Krishnavirji · KarmYog — digital identity
           </p>
           <p className="text-sm text-[rgba(232,217,168,0.75)]">
             {t.contact.office}: {contact.office}
@@ -125,7 +125,7 @@ export default function SiteFooter() {
 
       <div className="wrap footer-bottom">
         <p>
-          {vatika.fullTitle} · Joint Initiative of KY21C &amp; BKS
+          {platform.fullTitle} · BKS · Krishnavirji · KarmYog
         </p>
         <p className="mt-2 text-sm opacity-70">
           <a href={contact.mapLink} target="_blank" rel="noopener noreferrer">

@@ -2178,9 +2178,120 @@ h2 {
   color: var(--muted);
 }
 
-.seed-band {
+.participate-band {
   background: linear-gradient(135deg, var(--field-deep) 0%, #143526 55%, #1f4d38 100%);
   color: #fff;
+}
+
+.participate-panel h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  max-width: 20ch;
+  line-height: 1.15;
+  margin: 10px 0 14px;
+}
+
+.pillar-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.pillar-identity-card {
+  padding: 26px 22px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--stroke);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pillar-identity-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--field-deep);
+  line-height: 1.2;
+}
+
+.pillar-local {
+  font-family: var(--font-hi);
+  color: var(--muted);
+}
+
+.pillar-portrait {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 4px;
+}
+
+.pillar-points {
+  margin: 6px 0 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.pillar-points li {
+  padding-left: 14px;
+  position: relative;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.pillar-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grain);
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.promise-card {
+  padding: 22px 0;
+  border-top: 1px solid var(--stroke);
+}
+
+.promise-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--field-deep);
+  margin-bottom: 8px;
+}
+
+.promise-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.promise-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--stroke);
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .pillar-identity-grid,
+  .promise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn.dark,
+.btn-line.dark {
+  color: var(--field-deep);
+  border-color: rgba(18, 23, 20, 0.28);
 }
 
 .seed-panel h2 {

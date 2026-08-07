@@ -4,7 +4,7 @@ import { LanguageProvider } from '../components/LanguageProvider';
 import LanguageBar from '../components/LanguageBar';
 import SiteFooter from '../components/SiteFooter';
 import SiteNav from '../components/SiteNav';
-import { vatika } from '../lib/vatika';
+import { platform } from '../lib/platform';
 import {
   SITE_URL,
   absoluteUrl,
@@ -19,7 +19,7 @@ const ogImage = {
   url: absoluteUrl('/og-default.png'),
   width: 1200,
   height: 630,
-  alt: `${vatika.name} — Tree Plantation & Sponsorship`,
+  alt: `${platform.name} — BKS · Krishnavirji · KarmYog`,
 };
 
 export const viewport = {
@@ -30,24 +30,24 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${vatika.name} — Tree Plantation & Sponsorship | KY21C × BKS`,
-    template: `%s · ${vatika.name}`,
+    default: `${platform.name} — BKS · Krishnavirji · KarmYog`,
+    template: `%s · ${platform.name}`,
   },
-  description: vatika.purpose,
+  description: platform.purpose,
   applicationName: 'KarmYog Vatika',
-  authors: [{ name: vatika.name, url: SITE_URL }],
-  creator: vatika.name,
-  publisher: vatika.name,
+  authors: [{ name: platform.name, url: SITE_URL }],
+  creator: platform.name,
+  publisher: platform.name,
   keywords: [
     'KarmYog Vatika',
-    'tree plantation',
-    'tree sponsorship',
-    'KarmYog for the 21st Century',
     'Bharatiya Krishak Samaj',
+    'Krishan Bir Chaudhary',
+    'Krishnavirji',
+    'KarmYog for the 21st Century',
     'KY21C',
-    'Kaam to Karm',
-    'donate trees India',
-    'environmental NGO',
+    'Indian farmers',
+    'tree plantation',
+    'digital identity NGO',
   ],
   alternates: { canonical: SITE_URL },
   robots: {
@@ -63,22 +63,22 @@ export const metadata = {
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
-    title: vatika.name,
+    title: platform.name,
     statusBarStyle: 'default',
   },
   openGraph: {
-    title: vatika.fullTitle,
-    description: vatika.purpose,
+    title: platform.fullTitle,
+    description: platform.purpose,
     url: SITE_URL,
-    siteName: vatika.name,
+    siteName: platform.name,
     locale: 'en_IN',
     type: 'website',
     images: [ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: vatika.fullTitle,
-    description: vatika.tagline,
+    title: platform.fullTitle,
+    description: platform.tagline,
     creator: '@DrKrishanBir',
     site: '@DrKrishanBir',
     images: [absoluteUrl('/og-default.png')],
