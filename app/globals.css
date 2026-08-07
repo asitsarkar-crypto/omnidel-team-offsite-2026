@@ -1,3 +1,23 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-ink: #121714;
+  --color-muted: #5a655c;
+  --color-paper: #f4f6f2;
+  --color-mist: #e7ece6;
+  --color-field: #1f4d38;
+  --color-field-deep: #0b1c14;
+  --color-sap: #2f6b4a;
+  --color-grain: #b89b4c;
+  --color-grain-soft: #e8d9a8;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Karla', system-ui, sans-serif;
+  --font-hi: 'Noto Sans Devanagari', 'Karla', sans-serif;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
   --ink: #121714;
   --muted: #5a655c;
@@ -372,6 +392,17 @@ code {
 }
 
 .btn-line:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+.btn-line-dark {
+  border-color: var(--field);
+  color: var(--field);
+}
+
+.btn-line-dark:hover {
+  border-color: var(--field-deep);
+  background: rgba(31, 77, 56, 0.06);
+  color: var(--field-deep);
+}
 
 /* Page hero */
 .page-hero {
@@ -1507,6 +1538,12 @@ h2 {
   }
   .reverse-split {
     direction: ltr;
+  }
+}
+
+@media (max-width: 820px) {
+  main {
+    padding-bottom: 72px;
   }
 }
 

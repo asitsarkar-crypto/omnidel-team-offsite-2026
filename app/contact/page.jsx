@@ -1,10 +1,9 @@
 import Reveal from '../../components/Reveal';
+import GoogleFormEmbed from '../../components/contact/GoogleFormEmbed';
 import { contact, featuredMedia, orgs, profile, social } from '../../lib/data';
+import { buildMetadata, pageSeo } from '../../lib/seo';
 
-export const metadata = {
-  title: 'Contact',
-  description: `Contact ${profile.name} — email, phone, office and residence.`,
-};
+export const metadata = buildMetadata(pageSeo.contact);
 
 export default function ContactPage() {
   const directory = [
@@ -22,6 +21,13 @@ export default function ContactPage() {
       handle: `+91 ${p}`,
       href: `tel:+91${p}`,
     })),
+    {
+      id: 'whatsapp',
+      group: 'Direct',
+      label: 'WhatsApp',
+      handle: `+91 ${contact.phones[0]}`,
+      href: contact.whatsappUrl,
+    },
     {
       id: 'web',
       group: 'Direct',
@@ -55,11 +61,24 @@ export default function ContactPage() {
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Contact</p>
-          <h1>Write, call, or follow</h1>
+          <h1>Write, call, or fill the enquiry form</h1>
           <p className="page-lead">
             Official contact for {profile.name} — press, invitations, and farmer organisation
             correspondence.
           </p>
+          <div className="hero-actions" style={{ marginTop: 24 }}>
+            <a className="btn btn-solid" href="#enquiry">
+              Fill Enquiry Form
+            </a>
+            <a
+              className="btn btn-line"
+              href={contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book Free Consultation
+            </a>
+          </div>
         </div>
       </section>
 
@@ -82,31 +101,59 @@ export default function ContactPage() {
             </div>
           </Reveal>
           <Reveal className="contact-card" delay={120}>
-            <p className="kicker">Web</p>
+            <p className="kicker">WhatsApp</p>
             <a
               className="contact-strong"
-              href={contact.web}
+              href={contact.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {contact.webLabel}
+              Message on WhatsApp
             </a>
           </Reveal>
         </div>
       </section>
 
-      <section className="band muted-band">
+      <section id="enquiry" className="band muted-band scroll-mt-[var(--nav-h)]">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Enquiry</p>
+            <h2>Google Form</h2>
+            <p className="section-deck">
+              Share your name, organisation, mobile, email, service interest, and message.
+            </p>
+          </Reveal>
+          <Reveal>
+            <GoogleFormEmbed title="Contact enquiry form" />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="band">
         <div className="wrap split">
           <Reveal>
             <p className="kicker">Office</p>
             <h2>New Delhi</h2>
             <p>{contact.office}</p>
+            <a className="text-link" href={contact.mapLink} target="_blank" rel="noopener noreferrer">
+              Open in Google Maps
+            </a>
           </Reveal>
           <Reveal delay={80}>
             <p className="kicker">Residence</p>
             <h2>Ghaziabad</h2>
             <p>{contact.residence}</p>
           </Reveal>
+        </div>
+        <div className="wrap mt-10 overflow-hidden rounded-2xl border border-[var(--stroke)]">
+          <iframe
+            title={`Google Map — ${contact.office}`}
+            src={contact.mapEmbedUrl}
+            className="block h-[280px] w-full border-0 md:h-[360px]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </section>
 

@@ -6,6 +6,7 @@ import { profile } from '../lib/data';
 import {
   SITE_URL,
   absoluteUrl,
+  localBusinessJsonLd,
   organizationJsonLd,
   personJsonLd,
   websiteJsonLd,
@@ -92,7 +93,14 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <meta name="theme-color" content="#0b1c14" />
-        <JsonLd data={[websiteJsonLd(), personJsonLd(), organizationJsonLd()]} />
+        <JsonLd
+          data={[
+            websiteJsonLd(),
+            personJsonLd(),
+            organizationJsonLd(),
+            localBusinessJsonLd(),
+          ]}
+        />
       </head>
       <body>
         <a className="skip" href="#main">
