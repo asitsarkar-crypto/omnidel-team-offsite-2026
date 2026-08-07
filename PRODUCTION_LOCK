@@ -1,0 +1,12 @@
+LOCKED=true
+LOCKED_AT=2026-08-07T20:00:00Z
+LOCKED_BY=site-owner-request
+LOCKED_DEPLOYMENT=dpl_DLLGsjoPQXeifHTMCPYesSy7YnqR
+LOCKED_URL=https://krishan-bir-chaudhary.vercel.app
+LOCKED_COMMIT=7f9d8ac
+REASON=Owner requested production freeze until explicit unlock. No content rewrite or production deploy allowed.
+
+# UNLOCK (owner only)
+# 1. Delete this file, OR set LOCKED=false in this file
+# 2. Deploy with: UNLOCK_PRODUCTION=1 npx vercel --prod --yes --scope asitsarkar-5954s-projects
+# 3. Optionally remove .cursor/rules/production-lock.mdc
