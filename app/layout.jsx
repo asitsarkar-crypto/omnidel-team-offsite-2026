@@ -1,6 +1,7 @@
 import './globals.css';
 import JsonLd from '../components/JsonLd';
 import { LanguageProvider } from '../components/LanguageProvider';
+import LanguageBar from '../components/LanguageBar';
 import SiteFooter from '../components/SiteFooter';
 import SiteNav from '../components/SiteNav';
 import { profile } from '../lib/data';
@@ -109,6 +110,7 @@ export default function RootLayout({ children }) {
             Skip to content
           </a>
           <SiteNav />
+          <LanguageBar />
           <main id="main">{children}</main>
           <SiteFooter />
         </LanguageProvider>

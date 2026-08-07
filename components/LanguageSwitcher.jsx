@@ -2,7 +2,7 @@
 
 import { useLanguage } from './LanguageProvider';
 
-export default function LanguageSwitcher({ compact = false }) {
+export default function LanguageSwitcher({ compact = false, showLabel = false }) {
   const { lang, setLang, languages, t } = useLanguage();
 
   return (
@@ -11,6 +11,7 @@ export default function LanguageSwitcher({ compact = false }) {
       role="group"
       aria-label={t.language}
     >
+      {showLabel ? <span className="lang-label">{t.language}</span> : null}
       {languages.map((item) => {
         const active = item.code === lang;
         return (
@@ -19,7 +20,7 @@ export default function LanguageSwitcher({ compact = false }) {
             type="button"
             className={`lang-btn ${active ? 'is-active' : ''}`}
             aria-pressed={active}
-            title={item.native}
+            title={`${item.label} / ${item.native}`}
             onClick={() => setLang(item.code)}
           >
             <span className="lang-short">{item.short}</span>

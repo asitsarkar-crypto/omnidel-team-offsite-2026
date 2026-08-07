@@ -34,6 +34,7 @@
   --font-body: 'Karla', system-ui, sans-serif;
   --font-hi: 'Noto Sans Devanagari', 'Karla', sans-serif;
   --nav-h: 76px;
+  --lang-bar-h: 52px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -222,6 +223,69 @@ code {
   background: rgba(0, 0, 0, 0.22);
 }
 
+.lang-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 8px;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.lang-bar {
+  position: fixed;
+  inset: var(--nav-h) 0 auto 0;
+  z-index: 40;
+  background: linear-gradient(90deg, #0b1c14 0%, #1f4d38 55%, #163628 100%);
+  border-bottom: 1px solid rgba(184, 155, 76, 0.35);
+  color: #fff;
+}
+
+.lang-bar-inner {
+  min-height: var(--lang-bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+.lang-bar-title {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.lang-bar-title span {
+  color: var(--grain-soft);
+  font-weight: 500;
+}
+
+.lang-bar .lang-switcher {
+  border-color: rgba(232, 217, 168, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lang-bar .lang-btn {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.lang-bar .lang-btn.is-active {
+  background: var(--grain);
+  color: var(--field-deep);
+}
+
+.lang-bar .lang-native {
+  display: inline;
+}
+
+main {
+  padding-top: 0;
+}
+
 .site-nav.is-scrolled .lang-switcher,
 .site-nav.is-open .lang-switcher,
 .site-footer .lang-switcher {
@@ -336,7 +400,7 @@ html[data-lang='mr'] .footer-hi {
   align-items: end;
   color: #fff;
   overflow: hidden;
-  padding-top: var(--nav-h);
+  padding-top: calc(var(--nav-h) + var(--lang-bar-h));
 }
 
 .hero-layers { position: absolute; inset: 0; }
@@ -502,7 +566,7 @@ html[data-lang='mr'] .footer-hi {
   min-height: 52vh;
   display: grid;
   align-items: end;
-  padding: calc(var(--nav-h) + 40px) 0 56px;
+  padding: calc(var(--nav-h) + var(--lang-bar-h) + 40px) 0 56px;
   color: #fff;
   overflow: hidden;
 }
@@ -1273,7 +1337,7 @@ h2 {
 
   .nav-links {
     position: fixed;
-    inset: var(--nav-h) 0 auto 0;
+    inset: calc(var(--nav-h) + var(--lang-bar-h)) 0 auto 0;
     background: rgba(244, 246, 242, 0.97);
     backdrop-filter: blur(12px);
     padding: 18px 20px 24px;
