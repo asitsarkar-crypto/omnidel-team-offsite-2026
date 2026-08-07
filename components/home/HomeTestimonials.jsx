@@ -1,12 +1,13 @@
 'use client';
 
 import Reveal from '../Reveal';
-import { socialProof, testimonials, tvChannels } from '../../lib/data';
+import { tvChannels } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeTestimonials() {
   const { t } = useLanguage();
-  const quote = testimonials[0];
+  const quote = t.testimonials?.quote;
+  const socialProof = t.testimonials?.socialProof || [];
 
   return (
     <section id="testimonials" className="band scroll-mt-[var(--nav-h)]">

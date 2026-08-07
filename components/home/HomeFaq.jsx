@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Reveal from '../Reveal';
-import { faq } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeFaq() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(0);
+  const faq = t.faq?.items || [];
 
   return (
     <section id="faq" className="band faq-band scroll-mt-[calc(var(--nav-h)+var(--lang-bar-h))]">
@@ -47,7 +47,6 @@ export default function HomeFaq() {
                           stroke="currentColor"
                           strokeWidth="2.2"
                           strokeLinecap="round"
-                          className="faq-icon-plus"
                         />
                       </svg>
                     </span>

@@ -3,9 +3,13 @@
 import Link from 'next/link';
 import Reveal from '../Reveal';
 import { branding, kisanBhavan } from '../../lib/data';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HomeKisanBhavan() {
+  const { t } = useLanguage();
+  const k = t.kisanHome || {};
   const photos = (kisanBhavan.photos || []).filter((p) => p.status === 'available' && p.src);
+  const cards = k.cards || [];
 
   return (
     <section
@@ -15,9 +19,9 @@ export default function HomeKisanBhavan() {
     >
       <div className="wrap">
         <Reveal className="section-head kb-feature-head">
-          <p className="kicker">{kisanBhavan.kicker}</p>
-          <h2 id="kisan-bhavan-heading">{kisanBhavan.title}</h2>
-          <p className="section-deck">{kisanBhavan.featuredIntro}</p>
+          <p className="kicker">{k.kicker}</p>
+          <h2 id="kisan-bhavan-heading">{k.title}</h2>
+          <p className="section-deck">{k.intro}</p>
         </Reveal>
 
         <div className="kb-feature-layout">
@@ -29,30 +33,16 @@ export default function HomeKisanBhavan() {
               height={160}
               className="kb-feature-seal"
             />
-            <p className="kb-feature-note">
-              Archival ceremony photographs from the project library document the 26 December 1996
-              inauguration — including the plaque naming H. D. Deve Gowda and Dr. Krishan Bir
-              Chaudhary.
-            </p>
+            <p className="kb-feature-note">{k.note}</p>
           </Reveal>
 
           <div className="kb-feature-points">
-            <Reveal as="article" className="kb-feature-card">
-              <h3>Why it was established</h3>
-              <p>{kisanBhavan.whyEstablished.text}</p>
-            </Reveal>
-            <Reveal as="article" className="kb-feature-card" delay={60}>
-              <h3>Historical significance</h3>
-              <p>{kisanBhavan.historicalSignificance.text}</p>
-            </Reveal>
-            <Reveal as="article" className="kb-feature-card" delay={120}>
-              <h3>Foundation stone &amp; H. D. Deve Gowda</h3>
-              <p>{kisanBhavan.deveGowda.text}</p>
-            </Reveal>
-            <Reveal as="article" className="kb-feature-card" delay={180}>
-              <h3>Krishan Bir Chaudhary’s role</h3>
-              <p>{kisanBhavan.roleOfKrishanBir.text}</p>
-            </Reveal>
+            {cards.map((card, i) => (
+              <Reveal key={card.title} as="article" className="kb-feature-card" delay={i * 60}>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
 
@@ -74,10 +64,10 @@ export default function HomeKisanBhavan() {
 
         <Reveal className="kb-feature-cta" delay={80}>
           <Link className="btn btn-solid" href="/heritage#kisan-bhavan">
-            Read the full Kisan Bhavan story
+            {k.ctaStory}
           </Link>
           <Link className="btn btn-line btn-line-dark" href="/gallery">
-            Open photo gallery
+            {k.ctaGallery}
           </Link>
         </Reveal>
       </div>

@@ -52,7 +52,7 @@ export default function HomeContact() {
         </div>
 
         <Reveal className="mb-10">
-          <p className="kicker">Social</p>
+          <p className="kicker">{t.pages?.contact?.socialKicker || t.contact?.kicker}</p>
           <SocialIcons items={social} />
         </Reveal>
 

@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import Reveal from '../Reveal';
-import { roles } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeAbout() {
   const { t } = useLanguage();
+  const roleItems = t.lists?.roles || [];
 
   return (
     <section id="about" className="band intro-band scroll-mt-[var(--nav-h)]">
@@ -27,7 +27,7 @@ export default function HomeAbout() {
           <p className="lede">{t.about.summary}</p>
           <p>{t.about.meta}</p>
           <ul className="mt-6 grid gap-3">
-            {roles.slice(0, 3).map((role) => (
+            {roleItems.slice(0, 3).map((role) => (
               <li key={`${role.title}-${role.org}`} className="border-l-2 border-[var(--grain)] pl-4">
                 <strong className="block text-[var(--ink)]">
                   {role.title} — {role.org}

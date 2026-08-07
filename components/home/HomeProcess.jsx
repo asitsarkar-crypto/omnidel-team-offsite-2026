@@ -1,11 +1,11 @@
 'use client';
 
 import Reveal from '../Reveal';
-import { processSteps } from '../../lib/data';
 import { useLanguage } from '../LanguageProvider';
 
 export default function HomeProcess() {
   const { t } = useLanguage();
+  const steps = t.process?.steps || [];
 
   return (
     <section id="process" className="band scroll-mt-[var(--nav-h)]">
@@ -16,7 +16,7 @@ export default function HomeProcess() {
           <p className="section-deck">{t.process.deck}</p>
         </Reveal>
         <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((step, i) => (
+          {steps.map((step, i) => (
             <Reveal key={step.step} as="li" delay={i * 80} className="relative">
               <span className="mb-3 block font-[var(--font-display)] text-4xl text-[var(--grain)]">
                 {step.step}
