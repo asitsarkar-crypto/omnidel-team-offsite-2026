@@ -1,6 +1,7 @@
-﻿import IdentityHero from '../components/home/IdentityHero';
-import ThreePillars from '../components/home/ThreePillars';
-import PlatformPromise from '../components/home/PlatformPromise';
+﻿import CampaignHero from '../components/home/CampaignHero';
+import JointInitiative from '../components/home/JointInitiative';
+import ImpactCounters from '../components/home/ImpactCounters';
+import SeedSponsorBand from '../components/home/SeedSponsorBand';
 import ParticipateChapter from '../components/home/ParticipateChapter';
 import HomeTestimonialsVatika from '../components/home/HomeTestimonialsVatika';
 import HomeContact from '../components/home/HomeContact';
@@ -15,64 +16,95 @@ import { buildMetadata, faqJsonLd, pageSeo } from '../lib/seo';
 
 export const metadata = buildMetadata(pageSeo.home);
 
+/**
+ * Home follows the Poke brief:
+ * 1 Hero / Campaign Overview
+ * 2 Heritage & Legacy
+ * 3 Activity & Impact Showcase
+ * 4 Plant a Tree / Donate
+ * 5 Impact Counter
+ *
+ * Standalone deploy only — never merge/overwrite the original BKS live site.
+ */
 export default function HomePage() {
-  const galleryPreview = gallery.filter((g) => g.group === 'Atmosphere').slice(0, 4);
+  const activityGallery = gallery
+    .filter((g) => g.group === 'Atmosphere' || g.group === 'Leadership')
+    .slice(0, 6);
 
   return (
     <>
       <JsonLd data={faqJsonLd(vatikaFaq)} />
-      <IdentityHero />
+      <CampaignHero />
 
-      <section className="proof-band" aria-label="Identities">
+      <section className="proof-band" aria-label="Partners">
         <div className="wrap proof-row">
-          <span>Bharatiya Krishak Samaj</span>
-          <span>Krishnavirji</span>
           <span>KarmYog for the 21st Century</span>
-          <span>Trust · Heritage · Service</span>
+          <span>Bharatiya Krishak Samaj</span>
+          <span>Kaam to Karm</span>
+          <span>First 100 Trees — ₹15,000 seed sponsorship</span>
         </div>
       </section>
 
-      <ThreePillars />
-      <PlatformPromise />
+      {/* Brief: joint initiative + mission */}
+      <JointInitiative />
+      <SeedSponsorBand />
 
-      <section className="band" aria-labelledby="heritage-teaser-title">
+      {/* Brief: Impact Counter */}
+      <ImpactCounters />
+
+      {/* Brief: Heritage & Legacy */}
+      <section className="band" aria-labelledby="heritage-brief-title">
         <div className="wrap cta-split">
           <Reveal>
-            <p className="kicker">Heritage</p>
-            <h2 id="heritage-teaser-title">Farmers’ Forum to living canopy</h2>
+            <p className="kicker">Heritage &amp; Legacy</p>
+            <h2 id="heritage-brief-title">Institutional roots, living work</h2>
             <p className="section-deck">
-              Verified milestones and honest placeholders — Kisan Bhavan and foundation-stone chapters
-              await primary archive, never invented for spectacle.
+              Honouring Bharatiya Krishak Samaj’s farmer-organisation lineage — including the Kisan
+              Bhavan milestone — alongside KarmYog’s vocational and agricultural service. Verified
+              chapters are published; archival gaps stay clearly marked as placeholders.
             </p>
             <div className="hero-actions" style={{ marginTop: 18 }}>
               <Link className="btn btn-solid" href="/heritage">
-                Read the heritage story
+                Heritage &amp; Kisan Bhavan
               </Link>
-              <Link className="btn btn-line dark" href="/journey">
-                Leadership journey
+              <Link className="btn btn-line dark" href="/bks">
+                About BKS
+              </Link>
+              <Link className="btn btn-line dark" href="/about">
+                Krishnavirji
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <HomeTestimonialsVatika />
-      <ParticipateChapter />
-
-      <section className="band" aria-labelledby="gallery-teaser-title">
+      {/* Brief: Activity & Impact Showcase */}
+      <section className="band muted-band" aria-labelledby="activity-title">
         <div className="wrap">
           <Reveal className="section-head row-head">
             <div>
-              <p className="kicker">Gallery</p>
-              <h2 id="gallery-teaser-title">Land, leadership, atmosphere</h2>
+              <p className="kicker">Activity &amp; Impact</p>
+              <h2 id="activity-title">Plantation locations, growth, ecological care</h2>
+              <p className="section-deck">
+                Photo updates and field milestones. Location and species lists publish as partners
+                confirm sites.
+              </p>
             </div>
-            <Link className="btn btn-line dark" href="/gallery">
-              Open gallery
-            </Link>
+            <div className="hero-actions">
+              <Link className="btn btn-line dark" href="/gallery">
+                Gallery
+              </Link>
+              <Link className="btn btn-line dark" href="/locations">
+                Locations
+              </Link>
+              <Link className="btn btn-line dark" href="/impact">
+                Impact
+              </Link>
+            </div>
           </Reveal>
-          <div className="home-gallery-grid">
-            {galleryPreview.map((item, i) => (
-              <Reveal key={item.src} delay={i * 50} className="home-gallery-item">
+          <div className="home-gallery-grid activity-grid">
+            {activityGallery.map((item, i) => (
+              <Reveal key={item.src} delay={i * 40} className="home-gallery-item">
                 <img src={item.src} alt={item.alt} loading="lazy" />
                 <p>{item.caption}</p>
               </Reveal>
@@ -81,11 +113,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FaqAccordion
-        items={vatikaFaq}
-        kicker="FAQ"
-        title="Clear answers about identity, trust, and participation"
-      />
+      {/* Brief: Plant a Tree / Donate Now */}
+      <ParticipateChapter />
+
+      <section className="band" aria-labelledby="donate-module-title">
+        <div className="wrap cta-split">
+          <Reveal>
+            <p className="kicker">Plant a Tree · Donate Now</p>
+            <h2 id="donate-module-title">Support the canopy</h2>
+            <p className="section-deck">
+              Simple sponsor form — Name, Email, Phone, Trees / Amount. Razorpay / UPI ready when
+              credentials are configured; otherwise pledges are recorded with acknowledgement.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 18 }}>
+              <Link className="btn btn-solid" href="/plant">
+                Plant a Tree
+              </Link>
+              <Link className="btn btn-line dark" href="/donate">
+                Donate Now
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <HomeTestimonialsVatika />
+      <FaqAccordion items={vatikaFaq} />
       <HomeContact />
       <HomeStickyCta />
     </>

@@ -1,34 +1,23 @@
-# KarmYog Vatika — Digital Identity Platform
+# KarmYog Vatika — Tree Plantation & Sponsorship Platform
 
-**Standalone deploy only.**  
-Represents **Bharatiya Krishak Samaj**, **Krishnavirji (Krishan Bir Chaudhary)**, and **KarmYog for the 21st Century**.
+**Joint Initiative:** KarmYog for the 21st Century (KY21C) × Bharatiya Krishak Samaj (BKS)
 
-## Hard rules
+## Do not touch the original BKS live site
 
-- Do **not** merge this branch into `main` if `main` hosts the original Krishan Bir Chaudhary / BKS live portfolio.
-- Do **not** deploy to `https://krishan-bir-chaudhary.vercel.app/`.
-- Deploy only to the **`karmyog-vatika`** Vercel project.
+- This is a **new / standalone** Vercel project: `karmyog-vatika`
+- Live: https://karmyog-vatika-seven.vercel.app/
+- **Never** deploy to `https://krishan-bir-chaudhary.vercel.app/`
+- **Never** merge this branch into `main` if `main` hosts the original KBC/BKS portfolio
 
-## Live
+## Brief coverage
 
-https://karmyog-vatika-seven.vercel.app/
+1. Hero / Campaign Overview — KY21C × BKS, Kaam to Karm, Mishraji ₹15,000 / first 100 trees
+2. Heritage & Legacy — BKS / Kisan Bhavan (verified + placeholders)
+3. Activity & Impact — gallery, locations, impact counter
+4. Plant a Tree / Donate Now — form + Razorpay-ready APIs + acknowledgement
+5. Supabase schema ready (KarmYog Tracker) — activate with credentials
 
-## What this is
-
-A long-term digital identity and storytelling platform that:
-
-1. Presents BKS, Krishnavirji, and KarmYog with equal dignity  
-2. Builds trust with verified heritage (and honest placeholders)  
-3. Is ready to evolve into donation & tree-plantation programmes  
-
-## Local
-
-```bash
-npm install
-npm run dev
-```
-
-## Production
+## Deploy
 
 ```bash
 npx vercel --prod --yes --scope asitsarkar-5954s-projects
