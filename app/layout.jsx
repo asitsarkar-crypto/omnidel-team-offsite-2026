@@ -29,16 +29,16 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${vatika.name} — Tree Plantation & Sponsorship | KY21C × BKS`,
+    default: vatika.fullTitle,
     template: `%s · ${vatika.name}`,
   },
   description: vatika.purpose,
-  applicationName: 'KarmYog Vatika',
+  applicationName: 'BKS KY21C Plantation Drive',
   authors: [{ name: vatika.name, url: SITE_URL }],
   creator: vatika.name,
   publisher: vatika.name,
   keywords: [
-    'KarmYog Vatika',
+    'BKS KY21C Plantation Drive',
     'Bharatiya Krishak Samaj',
     'Krishan Bir Chaudhary',
     'Krishnavirji',
@@ -46,7 +46,7 @@ export const metadata = {
     'KY21C',
     'Indian farmers',
     'tree plantation',
-    'digital identity NGO',
+    'plantation drive',
   ],
   alternates: { canonical: SITE_URL },
   robots: {

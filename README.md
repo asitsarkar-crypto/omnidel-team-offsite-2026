@@ -1,11 +1,11 @@
-# KarmYog Vatika — Tree Plantation & Sponsorship Platform
+# BKS KY21C Plantation Drive — Tree Plantation & Sponsorship
 
 **Joint Initiative:** KarmYog for the 21st Century (KY21C) × Bharatiya Krishak Samaj (BKS)
 
 ## Do not touch the original BKS live site
 
-- This is a **new / standalone** Vercel project: `karmyog-vatika`
-- Live: https://karmyog-vatika-seven.vercel.app/
+- This is a **new / standalone** Vercel project / link: `bks-ky21c-plantation-drive`
+- Live: https://bks-ky21c-plantation-drive.vercel.app/ (alias; also karmyog-vatika-seven until DNS settles)
 - **Never** deploy to `https://krishan-bir-chaudhary.vercel.app/`
 - **Never** merge this branch into `main` if `main` hosts the original KBC/BKS portfolio
 

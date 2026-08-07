@@ -8,7 +8,7 @@ export default function VatikaHero() {
   const { t } = useLanguage();
 
   return (
-    <section className="hero" aria-label="KarmYog Vatika introduction">
+    <section className="hero" aria-label="BKS KY21C Plantation Drive">
       <div className="hero-layers" aria-hidden="true">
         <div
           className="hero-photo"

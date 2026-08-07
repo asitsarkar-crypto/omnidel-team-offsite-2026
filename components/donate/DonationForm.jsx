@@ -103,7 +103,7 @@ export default function DonationForm({
       key: orderPayload.razorpay.key,
       amount: orderPayload.razorpay.amount,
       currency: orderPayload.razorpay.currency,
-      name: 'KarmYog Vatika',
+      name: 'BKS KY21C Plantation Drive',
       description: `${donor.trees || 0} tree sponsorship`,
       order_id: orderPayload.razorpay.orderId,
       prefill: {

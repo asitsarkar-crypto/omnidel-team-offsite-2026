@@ -1,4 +1,4 @@
-# Missing assets & credentials — KarmYog Vatika
+# Missing assets & credentials — BKS KY21C Plantation Drive
 
 Tracked so delivery can continue with placeholders. Replace before production go-live.
 

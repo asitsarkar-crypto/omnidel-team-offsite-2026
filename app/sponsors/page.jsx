@@ -20,7 +20,7 @@ export default function SponsorsPage() {
         <div className="wrap page-hero-copy">
           <p className="kicker light">Sponsors</p>
           <h1>Those who plant first</h1>
-          <p className="page-lead">Seed sponsors and institutional partners of KarmYog Vatika.</p>
+          <p className="page-lead">Seed sponsors and institutional partners of BKS KY21C Plantation Drive.</p>
         </div>
       </section>
 

@@ -18,7 +18,7 @@ export default async function ThankYouPage({ searchParams }) {
         <p className="kicker">Acknowledgement</p>
         <h1>Thank you for planting with us</h1>
         <p className="lede">
-          Your contribution to KarmYog Vatika is recorded. A receipt trail is prepared when the
+          Your contribution to BKS KY21C Plantation Drive is recorded. A receipt trail is prepared when the
           payment gateway and legal entity details are fully configured.
         </p>
         <dl className="thank-dl">
