@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import Reveal from '../../components/Reveal';
 import GoogleFormEmbed from '../../components/contact/GoogleFormEmbed';
-import { contact, featuredMedia, orgs, profile, social } from '../../lib/data';
+import { contact, featuredMedia, orgs, social } from '../../lib/data';
+import { vatika } from '../../lib/vatika';
 import { buildMetadata, pageSeo } from '../../lib/seo';
 
 export const metadata = buildMetadata(pageSeo.contact);
@@ -28,13 +30,6 @@ export default function ContactPage() {
       handle: `+91 ${contact.phones[0]}`,
       href: contact.whatsappUrl,
     },
-    {
-      id: 'web',
-      group: 'Direct',
-      label: 'Website',
-      handle: contact.webLabel,
-      href: contact.web,
-    },
     ...social.map((s) => ({ ...s, group: 'Social' })),
     ...orgs.map((o) => ({
       id: o.href,
@@ -57,26 +52,24 @@ export default function ContactPage() {
       <section className="page-hero">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/photos/events/portrait-speaking.png')" }}
+          style={{ backgroundImage: "url('/photos/field-01.jpg')" }}
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Contact</p>
-          <h1>Write, call, or fill the enquiry form</h1>
+          <h1>Write to {vatika.name}</h1>
           <p className="page-lead">
-            Official contact for {profile.name} — press, invitations, and farmer organisation
-            correspondence.
+            Plantation sponsorship, press, partnerships, and joint-initiative enquiries for the KY21C
+            × BKS campaign.
           </p>
           <div className="hero-actions" style={{ marginTop: 24 }}>
-            <a className="btn btn-solid" href="#enquiry">
-              Fill Enquiry Form
-            </a>
-            <a
-              className="btn btn-line"
-              href={contact.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book Free Consultation
+            <Link className="btn btn-solid" href="/plant">
+              Plant a Tree
+            </Link>
+            <Link className="btn btn-line" href="/donate">
+              Donate Now
+            </Link>
+            <a className="btn btn-line" href="#enquiry">
+              Enquiry form
             </a>
           </div>
         </div>
@@ -118,9 +111,10 @@ export default function ContactPage() {
         <div className="wrap">
           <Reveal className="section-head">
             <p className="kicker">Enquiry</p>
-            <h2>Google Form</h2>
+            <h2>Send a message</h2>
             <p className="section-deck">
-              Share your name, organisation, mobile, email, service interest, and message.
+              Share your name, organisation, mobile, email, and how you wish to participate —
+              planting, sponsorship, press, or partnership.
             </p>
           </Reveal>
           <Reveal>
@@ -132,7 +126,7 @@ export default function ContactPage() {
       <section className="band">
         <div className="wrap split">
           <Reveal>
-            <p className="kicker">Office</p>
+            <p className="kicker">Coordination office</p>
             <h2>New Delhi</h2>
             <p>{contact.office}</p>
             <a className="text-link" href={contact.mapLink} target="_blank" rel="noopener noreferrer">
