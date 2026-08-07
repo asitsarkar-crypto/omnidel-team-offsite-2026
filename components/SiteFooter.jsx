@@ -58,6 +58,15 @@ export default function SiteFooter() {
           <p className="text-sm text-[rgba(232,217,168,0.75)]">
             {t.contact.office}: {contact.office}
           </p>
+          <a
+            className="text-link mt-2 inline-block"
+            href={contact.mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--grain-soft)' }}
+          >
+            {t.footer.viewMap}
+          </a>
           <div className="mt-5">
             <SocialIcons items={social} className="social-icons-footer" />
           </div>

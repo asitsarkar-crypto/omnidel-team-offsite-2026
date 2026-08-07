@@ -78,8 +78,6 @@ export const metadata = {
     card: 'summary_large_image',
     title: vatika.fullTitle,
     description: vatika.tagline,
-    creator: '@DrKrishanBir',
-    site: '@DrKrishanBir',
     images: [absoluteUrl('/og-default.png')],
   },
 };

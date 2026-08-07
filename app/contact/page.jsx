@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Reveal from '../../components/Reveal';
 import GoogleFormEmbed from '../../components/contact/GoogleFormEmbed';
+import SocialIcons from '../../components/SocialIcons';
 import { contact, featuredMedia, orgs, social } from '../../lib/data';
 import { vatika } from '../../lib/vatika';
 import { buildMetadata, pageSeo } from '../../lib/seo';
@@ -16,10 +17,17 @@ export default function ContactPage() {
       handle: contact.email,
       href: `mailto:${contact.email}`,
     },
-    ...contact.phones.map((p) => ({
+    {
+      id: 'email-bks',
+      group: 'Direct',
+      label: 'BKS West Bengal',
+      handle: contact.emailSecondary,
+      href: `mailto:${contact.emailSecondary}`,
+    },
+    ...contact.phones.map((p, i) => ({
       id: p,
       group: 'Direct',
-      label: 'Mobile',
+      label: contact.phoneLabels?.[i] || 'Mobile',
       handle: `+91 ${p}`,
       href: `tel:+91${p}`,
     })),
@@ -52,14 +60,14 @@ export default function ContactPage() {
       <section className="page-hero">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/photos/field-01.jpg')" }}
+          style={{ backgroundImage: "url('/photos/activity/sapling-presentation.jpeg')" }}
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Contact</p>
           <h1>Write to {vatika.name}</h1>
           <p className="page-lead">
             Plantation sponsorship, press, partnerships, and joint-initiative enquiries for the KY21C
-            × BKS campaign.
+            × BKS campaign — New Town, Kolkata.
           </p>
           <div className="hero-actions" style={{ marginTop: 24 }}>
             <Link className="btn btn-solid" href="/plant">
@@ -82,27 +90,37 @@ export default function ContactPage() {
             <a className="contact-strong" href={`mailto:${contact.email}`}>
               {contact.email}
             </a>
+            <a className="text-link mt-2 inline-block" href={`mailto:${contact.emailSecondary}`}>
+              {contact.emailSecondary}
+            </a>
           </Reveal>
           <Reveal className="contact-card" delay={60}>
-            <p className="kicker">Mobile</p>
+            <p className="kicker">Mobile / WhatsApp</p>
             <div className="contact-strong stack-phones">
-              {contact.phones.map((p) => (
+              {contact.phones.map((p, i) => (
                 <a key={p} href={`tel:+91${p}`}>
                   +91 {p}
+                  {contact.phoneLabels?.[i] ? (
+                    <span className="phone-label"> · {contact.phoneLabels[i]}</span>
+                  ) : null}
                 </a>
               ))}
             </div>
-          </Reveal>
-          <Reveal className="contact-card" delay={120}>
-            <p className="kicker">WhatsApp</p>
             <a
-              className="contact-strong"
+              className="text-link mt-2 inline-block"
               href={contact.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
               Message on WhatsApp
             </a>
+          </Reveal>
+          <Reveal className="contact-card" delay={120}>
+            <p className="kicker">Social</p>
+            <SocialIcons items={social} />
+            <p className="mt-3 text-sm text-[var(--muted)]">
+              Instagram @karmyogvatika · YouTube KarmYog for 21st Century
+            </p>
           </Reveal>
         </div>
       </section>
@@ -126,22 +144,47 @@ export default function ContactPage() {
       <section className="band">
         <div className="wrap split">
           <Reveal>
-            <p className="kicker">Coordination office</p>
-            <h2>New Delhi</h2>
+            <p className="kicker">Head office</p>
+            <h2>{contact.city}</h2>
+            <p className="office-label">{contact.officeLabel}</p>
             <p>{contact.office}</p>
+            <p className="section-deck" style={{ marginTop: 10 }}>
+              {contact.officeNote}
+            </p>
             <a className="text-link" href={contact.mapLink} target="_blank" rel="noopener noreferrer">
               Open in Google Maps
             </a>
           </Reveal>
           <Reveal delay={80}>
-            <p className="kicker">Residence</p>
-            <h2>Ghaziabad</h2>
-            <p>{contact.residence}</p>
+            <p className="kicker">Joint partners</p>
+            <h2>KY21C × BKS West Bengal</h2>
+            <p>
+              This plantation platform is coordinated from the New Town desk shared with KY21C and
+              Bharatiya Krishak Samaj — West Bengal.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 16 }}>
+              <a
+                className="btn btn-line dark"
+                href="https://bkswbengal.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                bkswbengal.org
+              </a>
+              <a
+                className="btn btn-line dark"
+                href="https://karmyog21c.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                karmyog21c.in
+              </a>
+            </div>
           </Reveal>
         </div>
         <div className="wrap mt-10 overflow-hidden rounded-2xl border border-[var(--stroke)]">
           <iframe
-            title={`Google Map — ${contact.office}`}
+            title={`Google Map — ${contact.officeLabel}`}
             src={contact.mapEmbedUrl}
             className="block h-[280px] w-full border-0 md:h-[360px]"
             loading="lazy"

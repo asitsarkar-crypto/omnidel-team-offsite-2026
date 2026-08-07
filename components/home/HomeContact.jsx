@@ -25,13 +25,19 @@ export default function HomeContact() {
             <a className="contact-strong" href={`mailto:${contact.email}`}>
               {contact.email}
             </a>
+            <a className="text-link mt-2 inline-block" href={`mailto:${contact.emailSecondary}`}>
+              {contact.emailSecondary}
+            </a>
           </Reveal>
           <Reveal delay={60} as="div">
             <p className="kicker">{t.contact.phone}</p>
             <div className="stack-phones contact-strong">
-              {contact.phones.map((p) => (
+              {contact.phones.map((p, i) => (
                 <a key={p} href={`tel:+91${p}`}>
                   +91 {p}
+                  {contact.phoneLabels?.[i] ? (
+                    <span className="phone-label"> · {contact.phoneLabels[i]}</span>
+                  ) : null}
                 </a>
               ))}
               <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -41,6 +47,7 @@ export default function HomeContact() {
           </Reveal>
           <Reveal delay={120} as="div">
             <p className="kicker">{t.contact.office}</p>
+            <p className="office-label">{contact.officeLabel}</p>
             <p className="text-[var(--ink)]">{contact.office}</p>
             <a
               className="text-link mt-2 inline-block"
@@ -53,9 +60,23 @@ export default function HomeContact() {
           </Reveal>
         </div>
 
-        <Reveal className="mb-10">
+        <Reveal className="mb-8">
           <p className="kicker">Social</p>
           <SocialIcons items={social} />
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            @karmyogvatika · YouTube KarmYog for 21st Century · Facebook KY21C
+          </p>
+        </Reveal>
+
+        <Reveal className="mb-10 overflow-hidden rounded-md border border-[var(--stroke)]">
+          <iframe
+            title={`Google Map — ${contact.officeLabel}`}
+            src={contact.mapEmbedUrl}
+            className="block h-[240px] w-full border-0 md:h-[320px]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </Reveal>
 
         <div className="mb-8 flex flex-wrap gap-3">

@@ -2968,3 +2968,16 @@ h2 {
     transition: none;
   }
 }
+
+
+.office-label {
+  font-weight: 700;
+  color: var(--field-deep);
+  margin-bottom: 6px;
+}
+
+.phone-label {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.85em;
+}
