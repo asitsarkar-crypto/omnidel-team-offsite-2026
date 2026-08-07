@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { branding, links, nav, profile } from '../lib/data';
+import { branding, links, nav } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from './LanguageProvider';
@@ -31,13 +31,20 @@ export default function SiteNav() {
         <Link className="nav-brand" href="/">
           <img
             className="nav-bks-logo"
+            src={branding.ky21cLogo || branding.bksLogo}
+            alt={branding.vatikaName || branding.bksLogoAlt}
+            width={44}
+            height={44}
+          />
+          <img
+            className="nav-bks-logo nav-bks-logo-secondary"
             src={branding.bksLogo}
             alt={branding.bksLogoAlt}
             width={44}
             height={44}
           />
           <span className="nav-brand-text">
-            <span className="nav-brand-en">{profile.name}</span>
+            <span className="nav-brand-en">{branding.vatikaName || profile.name}</span>
             <span className="nav-brand-hi">{t.hero.nameLocal}</span>
           </span>
         </Link>
