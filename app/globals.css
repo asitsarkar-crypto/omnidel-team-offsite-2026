@@ -711,9 +711,10 @@ h2 {
 .intro-portrait img {
   width: 100%;
   aspect-ratio: 4 / 5;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center top;
   background: #eef2ec;
+  display: block;
 }
 
 .intro-portrait figcaption,
