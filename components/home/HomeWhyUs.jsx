@@ -29,7 +29,7 @@ export default function HomeWhyUs() {
           ))}
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="why-grid">
           {whyItems.map((item, i) => (
             <Reveal key={item.title} delay={i * 80} as="article">
               <h3 className="mb-2 font-[var(--font-display)] text-2xl text-[var(--ink)]">{item.title}</h3>
@@ -38,9 +38,9 @@ export default function HomeWhyUs() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="award-rail mt-12">
           {awards.map((award, i) => (
-            <Reveal key={award.title} delay={i * 60} as="article" className="border-l-2 border-[var(--grain)] pl-4">
+            <Reveal key={award.title} delay={i * 60} as="article">
               <p className="text-sm text-[var(--grain)]">{award.when}</p>
               <h3 className="font-[var(--font-display)] text-xl text-[var(--ink)]">{award.title}</h3>
               <p className="text-sm text-[var(--muted)]">{award.by}</p>

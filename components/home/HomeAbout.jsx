@@ -28,7 +28,7 @@ export default function HomeAbout() {
           <p>{t.about.meta}</p>
           <ul className="mt-6 grid gap-3">
             {roleItems.slice(0, 3).map((role) => (
-              <li key={`${role.title}-${role.org}`} className="border-l-2 border-[var(--grain)] pl-4">
+              <li key={`${role.title}-${role.org}`} className="vip-rule">
                 <strong className="block text-[var(--ink)]">
                   {role.title} — {role.org}
                 </strong>
