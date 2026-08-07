@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Media Genie AI — Context Report</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    :root {
+      --ink: #1a1f1c;
+      --muted: #5a635c;
+      --line: #d7ddd8;
+      --accent: #2d6a4f;
+      --bg: #f7f8f5;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: white;
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+    .cover {
+      border: 1px solid var(--line);
+      padding: 28px 28px 22px;
+      margin-bottom: 22px;
+      background: linear-gradient(160deg, #eef5f0 0%, #ffffff 55%);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-size: 22pt;
+      line-height: 1.15;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .subtitle {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 11pt;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+      font-size: 9.5pt;
+    }
+    .meta-grid strong { color: var(--ink); }
+    .meta-grid span { color: var(--muted); }
+    h2 {
+      font-size: 13pt;
+      margin: 22px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--accent);
+      color: var(--accent);
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 11pt;
+      margin: 14px 0 6px;
+      color: var(--ink);
+      page-break-after: avoid;
+    }
+    p { margin: 0 0 8px; }
+    ul, ol { margin: 0 0 10px; padding-left: 18px; }
+    li { margin-bottom: 3px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg);
+      color: var(--ink);
+      font-weight: 650;
+    }
+    code, .mono {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 9pt;
+    }
+    .note {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      margin: 10px 0 14px;
+      font-size: 9.5pt;
+    }
+    .flow {
+      font-family: Consolas, "Courier New", monospace;
+      background: #f3f5f2;
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      white-space: pre-wrap;
+      font-size: 9pt;
+      margin: 8px 0 12px;
+    }
+    .footer {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8.5pt;
+    }
+    a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <p class="eyebrow">OmniDEL.ai / KarmYog Vatika · Product Context</p>
+    <h1>Media Genie AI — Full Report</h1>
+    <p class="subtitle">AI Visual Library &amp; Portfolio Builder — reconstructed from the published website</p>
+    <div class="meta-grid">
+      <div><strong>Primary URL</strong><br /><span>https://media-genie-ai.vercel.app</span></div>
+      <div><strong>Alternate</strong><br /><span>https://media-genie-2.vercel.app</span></div>
+      <div><strong>Report date</strong><br /><span>30 July 2026</span></div>
+      <div><strong>Source basis</strong><br /><span>Live site, public /api/images, demo gallery (no GitHub source)</span></div>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>Scope note:</strong> GitHub source for Media Genie is private / inaccessible to this environment.
+    This report is based entirely on the published product surface and public API.
+  </div>
+
+  <h2>1. Executive summary</h2>
+  <p>
+    <strong>Media Genie AI</strong> is an AI-powered visual library and portfolio builder.
+    Users upload images; AI tags, scores, and captions them; then a natural-language prompt produces a
+    <strong>shareable public portfolio URL</strong>.
+  </p>
+  <p>
+    The live deployment sits on Vercel under Ram Badrinathan’s team and is used in practice for
+    <strong>KarmYog Vatika</strong> project imagery (bamboo, gardens, construction, events).
+    Internally it is catalogued under <strong>vatika.ai / mediagenie.ai</strong>.
+  </p>
+  <p>
+    <strong>Pitch:</strong> “Stop organizing photos by hand. Start shipping portfolios in seconds.”<br />
+    <strong>Claimed value:</strong> ~3 hours of folder hunting → under 2 minutes to a shareable link.
+  </p>
+
+  <h2>2. Product identity</h2>
+  <table>
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Name</td><td>Media Genie AI</td></tr>
+    <tr><td>Tagline</td><td>AI Visual Library &amp; Portfolio Builder</td></tr>
+    <tr><td>Meta description</td><td>AI-powered image management and portfolio generator</td></tr>
+    <tr><td>Primary URL</td><td>https://media-genie-ai.vercel.app</td></tr>
+    <tr><td>Alternate</td><td>https://media-genie-2.vercel.app (same marketing; noted as v2 image management)</td></tr>
+    <tr><td>Hosting</td><td>Vercel — ram-badrinathans-projects</td></tr>
+    <tr><td>Audience</td><td>Photographers, designers, studios, anyone with large image dumps</td></tr>
+    <tr><td>Org context</td><td>KarmYog / Vatika.ai product line</td></tr>
+  </table>
+
+  <h2>3. User journey (as marketed)</h2>
+  <ol>
+    <li><strong>Upload</strong> — drag/drop from phone/laptop/camera; up to <strong>20 MB</strong>/image; bulk upload; no separate cloud account required.</li>
+    <li><strong>AI analysis</strong> — Claude Vision claimed; outputs tags, quality score 0–10, caption, dominant colors, scene type.</li>
+    <li><strong>Prompt → portfolio</strong> — e.g. “best project shots for investor pitch”; system selects, orders, captions, returns shareable link.</li>
+  </ol>
+  <p><strong>Landing CTAs:</strong> “Try it now” → <span class="mono">/review</span> · “See a live portfolio” → demo gallery.</p>
+
+  <h2>4. Feature set</h2>
+  <table>
+    <tr><th>Feature</th><th>Behavior</th></tr>
+    <tr><td>Auto-tagging &amp; classification</td><td>Semantic tags, quality score, caption, suggested folders, dominant colors; taxonomy learns from approvals</td></tr>
+    <tr><td>Search at scale</td><td>Filter by tags, folders, scenes, quality (server-side)</td></tr>
+    <tr><td>Prompt-driven portfolios</td><td>Natural-language prompt → curated gallery + public URL</td></tr>
+    <tr><td>Review workflow</td><td>Approve/reject in bulk; soft delete + ~10s undo; Trash restore; audit trail</td></tr>
+    <tr><td>Editable metadata</td><td>Tags, captions, scores editable; custom folders/scenes inline</td></tr>
+    <tr><td>Sharing</td><td>Public URL; Copy / WhatsApp / Email / QR; recipients need no account</td></tr>
+  </table>
+
+  <h2>5. Site map (observed)</h2>
+  <table>
+    <tr><th>Route</th><th>Access</th><th>Role</th></tr>
+    <tr><td class="mono">/</td><td>Public</td><td>Marketing landing</td></tr>
+    <tr><td class="mono">/gallery/[uuid]</td><td>Public</td><td>Shareable portfolio viewer</td></tr>
+    <tr><td class="mono">/review</td><td>PIN gate</td><td>Admin review</td></tr>
+    <tr><td class="mono">/portfolio</td><td>PIN gate</td><td>Portfolio builder (admin)</td></tr>
+    <tr><td class="mono">/settings</td><td>PIN gate</td><td>Settings (admin)</td></tr>
+    <tr><td class="mono">/api/images</td><td>Public JSON</td><td>Image library listing</td></tr>
+  </table>
+  <p>
+    Demo gallery:
+    <span class="mono">/gallery/e17f8010-1baa-4f2c-8464-f9fa544bdcd0</span>
+  </p>
+
+  <h2>6. Demo portfolio (live)</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Brand</td><td>KarmYog Vatika · Portfolio</td></tr>
+    <tr><td>Title</td><td>Premium Garden Solutions for Goa Properties - Investment Portfolio</td></tr>
+    <tr><td>Prompt framing</td><td>“Premium biophilic garden design for luxury Goa properties”</td></tr>
+    <tr><td>Count</td><td>8 selected works</td></tr>
+    <tr><td>Share actions</td><td>Copy link, WhatsApp, Email, QR</td></tr>
+    <tr><td>Viewer model</td><td>“Prepared for · shared viewer” — no sign-in</td></tr>
+    <tr><td>Footer CTA</td><td>“Reach out — we'll pick up from here” / Contact us</td></tr>
+  </table>
+  <p>
+    Gallery work labels include: post production image, exterior views, garden installations, planters, events, client sites —
+    each with long, sales-oriented captions. Landing also demos a mock “investor pitch” curation (18 images, score 9.2/10).
+  </p>
+
+  <h2>7. Inferred tech stack</h2>
+  <table>
+    <tr><th>Layer</th><th>Evidence</th></tr>
+    <tr><td>App / hosting</td><td>Next.js App Router on Vercel (Turbopack chunks)</td></tr>
+    <tr><td>Fonts</td><td>Instrument Serif, Inter, JetBrains Mono</td></tr>
+    <tr><td>Auth</td><td>Admin PIN (not public OAuth)</td></tr>
+    <tr><td>Storage / CDN</td><td>Supabase Storage — pbzokljflnqovcojdhks.supabase.co (thumbnails bucket; 400/800 sizes)</td></tr>
+    <tr><td>Vision AI</td><td>Marketing claims Claude Vision</td></tr>
+    <tr><td>Data API</td><td>GET /api/images → JSON array</td></tr>
+    <tr><td>Possible Drive import</td><td>Schema field drive_file_id (unused in public sample)</td></tr>
+  </table>
+
+  <h2>8. Data model (from /api/images)</h2>
+  <p>Public sample: <strong>100</strong> records, all <span class="mono">status: "approved"</span>, <span class="mono">reviewed_by: "admin"</span>.</p>
+
+  <h3>Fields</h3>
+  <p class="mono">
+    id, drive_file_id, filename, filepath, uploader, uploaded_at, processed_at, width, height, mime, exif,
+    file_size, quality_score, tags[], scene, dominant_colors[], orientation, ai_caption, classified_folder,
+    status, reviewed_by, reviewed_at, thumbnail_url, cdn_url, created_at, deleted_at, deleted_by
+  </p>
+
+  <h3>Design signals</h3>
+  <ul>
+    <li>Soft delete: <span class="mono">deleted_at</span> / <span class="mono">deleted_by</span></li>
+    <li>Human review: <span class="mono">status</span> + <span class="mono">reviewed_by</span> / <span class="mono">reviewed_at</span></li>
+    <li>Drive pipeline stub: <span class="mono">drive_file_id</span></li>
+    <li>AI enrich: tags, scene, colors, caption, quality, folder</li>
+  </ul>
+
+  <h3>Library snapshot (100 images)</h3>
+  <table>
+    <tr><th>Dimension</th><th>Observation</th></tr>
+    <tr><td>Upload window</td><td>2026-04-23 → 2026-05-08</td></tr>
+    <tr><td>MIME</td><td>all image/jpeg</td></tr>
+    <tr><td>Avg quality</td><td>~7.5 (range 6–9)</td></tr>
+    <tr><td>Orientation</td><td>landscape 73 · square 17 · portrait 10</td></tr>
+    <tr><td>Avg file size</td><td>~1.2 MB</td></tr>
+    <tr><td>Top folders</td><td>post-production-image (28), 3d-renders (26), karigars (10), team-photos (8)</td></tr>
+    <tr><td>Top scenes</td><td>event-venue, construction-site, sustainable-low-cost-housing, exhibition</td></tr>
+    <tr><td>Top tags</td><td>bamboo, structure, exterior, garden, planter, installation, 3d-render</td></tr>
+  </table>
+  <p>Content domain: <strong>KarmYog Vatika</strong> — bamboo structures, gardens, construction, events, team/karigar photos, project numbers.</p>
+
+  <h2>9. Core flows (reconstructed)</h2>
+  <div class="flow">Upload → AI enrich (tags / score / caption / colors / scene / folder)
+      → Admin review (PIN) — approve / edit / soft-delete
+      → Prompt portfolio generation
+      → Public /gallery/{uuid} share link</div>
+
+  <h2>10. Organizational placement</h2>
+  <ul>
+    <li>Category lineage: <strong>mediagenie.ai</strong> → grouped under <strong>KarmYog / Vatika.ai</strong></li>
+    <li>Live links titled Media Genie AI and Media Genie 2 in OmniDEL livelinks catalog</li>
+    <li>Cross-ref in Arjun Acharya sales content: portfolios / collateral via Media Genie for Vatika client meetings</li>
+  </ul>
+
+  <h2>11. Gaps (need repo or admin PIN)</h2>
+  <ul>
+    <li>Source code, README, env vars, exact model/prompt config</li>
+    <li>Portfolio generation API internals</li>
+    <li>Full DB (portfolios, taxonomy, audit tables)</li>
+    <li>Upload / Drive sync implementation</li>
+    <li>PIN auth mechanism</li>
+    <li>Whether <span class="mono">/api/images</span> is intentionally public or an exposure</li>
+  </ul>
+
+  <h2>12. Bottom line</h2>
+  <p>
+    Media Genie is a <strong>production-looking Vatika visual ops tool</strong>: Claude Vision enrichment + review queue +
+    prompt-to-portfolio sharing, backed by <strong>Next.js + Vercel + Supabase</strong>, with a live KarmYog Vatika
+    investor-style gallery on the public site.
+  </p>
+
+  <div class="footer">
+    Generated from published website context · Media Genie AI · 30 July 2026 ·
+    Not a substitute for source-repo documentation
+  </div>
+</body>
+</html>
