@@ -1,9 +1,9 @@
 LOCKED=true
 LOCKED_AT=2026-08-07T20:00:00Z
 LOCKED_BY=site-owner-request
-LOCKED_DEPLOYMENT=dpl_DLLGsjoPQXeifHTMCPYesSy7YnqR
+LOCKED_DEPLOYMENT=dpl_ZasefbzQ8EcFarjU5j7zSg7kNRoa
 LOCKED_URL=https://krishan-bir-chaudhary.vercel.app
-LOCKED_COMMIT=7f9d8ac
+LOCKED_COMMIT=202093f
 REASON=Owner requested production freeze until explicit unlock. No content rewrite or production deploy allowed.
 
 # HOW THE LOCK WORKS
