@@ -34,7 +34,7 @@
   --font-body: 'Karla', system-ui, sans-serif;
   --font-hi: 'Noto Sans Devanagari', 'Karla', sans-serif;
   --nav-h: 76px;
-  --lang-bar-h: 52px;
+  --lang-bar-h: 0px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 

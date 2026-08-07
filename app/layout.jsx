@@ -1,7 +1,6 @@
 import './globals.css';
 import JsonLd from '../components/JsonLd';
 import { LanguageProvider } from '../components/LanguageProvider';
-import LanguageBar from '../components/LanguageBar';
 import SkipLink from '../components/SkipLink';
 import SiteFooter from '../components/SiteFooter';
 import SiteNav from '../components/SiteNav';
@@ -109,7 +108,6 @@ export default function RootLayout({ children }) {
         <LanguageProvider>
           <SkipLink />
           <SiteNav />
-          <LanguageBar />
           <main id="main">{children}</main>
           <SiteFooter />
         </LanguageProvider>
