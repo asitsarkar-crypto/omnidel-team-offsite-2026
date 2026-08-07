@@ -433,8 +433,8 @@ html[data-lang='mr'] .footer-hi {
   inset: 0;
   background-color: #0b1c14;
   /* Keep the full portrait visible (no head crop) */
-  background-size: auto 86%;
-  background-position: right 6% center;
+  background-size: auto 90%;
+  background-position: right 4% top 8%;
   background-repeat: no-repeat;
   transform: none;
   animation: none;
@@ -443,8 +443,8 @@ html[data-lang='mr'] .footer-hi {
 
 @media (max-width: 820px) {
   .hero-photo {
-    background-size: auto 72%;
-    background-position: center 18%;
+    background-size: auto 78%;
+    background-position: center top 6%;
     opacity: 0.55;
   }
 }
@@ -610,7 +610,7 @@ html[data-lang='mr'] .footer-hi {
   inset: 0;
   background-color: #0b1c14;
   background-size: cover;
-  background-position: center 18%;
+  background-position: center top;
   transform: none;
   animation: none;
 }
@@ -711,8 +711,9 @@ h2 {
 .intro-portrait img {
   width: 100%;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 20%;
+  object-fit: contain;
+  object-position: center top;
+  background: #eef2ec;
 }
 
 .intro-portrait figcaption,
@@ -992,14 +993,14 @@ h2 {
 .gallery-card img {
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 480px;
   object-fit: contain;
-  object-position: center;
+  object-position: center top;
   display: block;
   transition: transform 0.6s var(--ease);
 }
 
-.gallery-card:hover img { transform: scale(1.02); }
+.gallery-card:hover img { transform: none; }
 
 .gallery-card figcaption {
   padding: 14px 16px 18px;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Reveal({
   children,
@@ -10,15 +10,16 @@ export default function Reveal({
   ...rest
 }) {
   const ref = useRef(null);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return undefined;
+    if (!node || inView) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          node.classList.add('is-in');
+          setInView(true);
           observer.unobserve(node);
         }
       },
@@ -27,12 +28,12 @@ export default function Reveal({
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [inView]);
 
   return (
     <Tag
       ref={ref}
-      className={`reveal ${className}`.trim()}
+      className={`reveal ${inView ? 'is-in' : ''} ${className}`.trim()}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       {...rest}
     >
