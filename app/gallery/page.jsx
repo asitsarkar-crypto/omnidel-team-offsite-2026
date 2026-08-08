@@ -1,6 +1,10 @@
 import Reveal from '../../components/Reveal';
 import { gallery, social } from '../../lib/data';
-import { galleryFromMahacharya, mahacharya } from '../../lib/mahacharya';
+import {
+  galleryFromMahacharya,
+  mahacharya,
+  mahacharyaVideos,
+} from '../../lib/mahacharya';
 import { vatika } from '../../lib/vatika';
 import { buildMetadata, pageSeo } from '../../lib/seo';
 
@@ -24,8 +28,8 @@ const SECTIONS = [
   {
     id: 'activity',
     kicker: 'Activity',
-    title: 'Planting begins with trust',
-    deck: 'Sapling presentation and documentation — the campaign’s early public record.',
+    title: 'Planting, campus & care',
+    deck: 'Sapling presentation, KY21C green campus, and documentation — the campaign’s early public record of Kaam to Karm.',
     groups: ['Activity'],
   },
   {
@@ -51,8 +55,8 @@ export default function GalleryPage() {
           <p className="kicker light">Gallery</p>
           <h1>Land, leadership, and living canopy</h1>
           <p className="page-lead">
-            Editorial photography for {vatika.name} — KY21C leadership, BKS West Bengal appointment,
-            and national stewardship. Selected with intent.
+            Photos and films of Mahacharya Sourabh J. Sarkar for {vatika.name} — KY21C
+            leadership, BKS West Bengal appointment, campus activity, and field teaching.
           </p>
         </div>
       </section>
@@ -85,7 +89,46 @@ export default function GalleryPage() {
         );
       })}
 
-      <section className="band muted-band">
+      <section className="band muted-band" id="videos" aria-labelledby="videos-title">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <p className="kicker">Mahacharya on film</p>
+            <h2 id="videos-title">Watch — teaching in the field</h2>
+            <p className="section-deck">
+              KY21C films featuring Mahacharya Sourabh J. Sarkar — the same windows shown on{' '}
+              <a href={mahacharya.links.leadership} target="_blank" rel="noopener noreferrer">
+                bkswbengal.org/leadership
+              </a>
+              .
+            </p>
+          </Reveal>
+          <div className="mahacharya-video-grid">
+            {mahacharyaVideos.map((video, i) => (
+              <Reveal key={video.id} delay={i * 60} className="mahacharya-video">
+                <div className="video-frame">
+                  <iframe
+                    src={video.embedSrc}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                </div>
+                <h4>{video.title}</h4>
+                <p>{video.note}</p>
+                <p>
+                  <a href={video.href} target="_blank" rel="noopener noreferrer">
+                    Open on YouTube
+                  </a>
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="band">
         <div className="wrap">
           <Reveal className="note-panel">
             <p className="kicker">Sources</p>
@@ -95,8 +138,8 @@ export default function GalleryPage() {
               <a href={mahacharya.links.bksWestBengal} target="_blank" rel="noopener noreferrer">
                 Bharatiya Krishak Samaj — West Bengal
               </a>
-              . Field plough stills of Mahacharya at work will join the Activity section when
-              stakeholder files are attached.
+              . More field stills of Mahacharya at plough work can be added when files are
+              attached again as downloads.
             </p>
             <div className="social-row dense">
               {social.map((s) => (
