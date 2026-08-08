@@ -82,9 +82,9 @@ export default function MahacharyaPresence() {
 
         <Reveal className="mahacharya-video-head" delay={40}>
           <p className="kicker">Watch</p>
-          <h3>Two windows into the work</h3>
+          <h3>Field plough &amp; teaching films</h3>
           <p className="section-deck">
-            The same KY21C films featured on{' '}
+            Land preparation with Mahacharya, plus KY21C films featured on{' '}
             <a href={mahacharya.links.leadership} target="_blank" rel="noopener noreferrer">
               bkswbengal.org/leadership
             </a>
@@ -95,14 +95,26 @@ export default function MahacharyaPresence() {
           {mahacharyaVideos.map((video, i) => (
             <Reveal key={video.id} delay={i * 60} className="mahacharya-video">
               <div className="video-frame">
-                <iframe
-                  src={video.embedSrc}
-                  title={video.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  referrerPolicy="strict-origin-when-cross-origin"
-                />
+                {video.src ? (
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={video.poster}
+                    title={video.title}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                  </video>
+                ) : (
+                  <iframe
+                    src={video.embedSrc}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                )}
               </div>
               <h4>{video.title}</h4>
               <p>{video.note}</p>

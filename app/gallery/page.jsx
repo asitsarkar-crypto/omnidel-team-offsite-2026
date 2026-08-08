@@ -28,8 +28,8 @@ const SECTIONS = [
   {
     id: 'activity',
     kicker: 'Activity',
-    title: 'Planting, campus & care',
-    deck: 'Sapling presentation, KY21C green campus, and documentation — the campaign’s early public record of Kaam to Karm.',
+    title: 'Field, campus & planting',
+    deck: 'Land preparation with Mahacharya on the plough, sapling presentation, and KY21C green campus — Kaam to Karm in public view.',
     groups: ['Activity'],
   },
   {
@@ -49,14 +49,14 @@ export default function GalleryPage() {
       <section className="page-hero">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/photos/activity/sapling-presentation.jpeg')" }}
+          style={{ backgroundImage: "url('/photos/activity/field-plough-work.jpg')" }}
         />
         <div className="wrap page-hero-copy">
           <p className="kicker light">Gallery</p>
           <h1>Land, leadership, and living canopy</h1>
           <p className="page-lead">
-            Photos and films of Mahacharya Sourabh J. Sarkar for {vatika.name} — KY21C
-            leadership, BKS West Bengal appointment, campus activity, and field teaching.
+            Photos and films of Mahacharya Sourabh J. Sarkar for {vatika.name} — field plough
+            work, KY21C leadership, BKS West Bengal appointment, and campus activity.
           </p>
         </div>
       </section>
@@ -93,9 +93,10 @@ export default function GalleryPage() {
         <div className="wrap">
           <Reveal className="section-head">
             <p className="kicker">Mahacharya on film</p>
-            <h2 id="videos-title">Watch — teaching in the field</h2>
+            <h2 id="videos-title">Watch — field &amp; teaching</h2>
             <p className="section-deck">
-              KY21C films featuring Mahacharya Sourabh J. Sarkar — the same windows shown on{' '}
+              Field plough footage with Mahacharya Sourabh J. Sarkar, plus KY21C teaching films
+              also featured on{' '}
               <a href={mahacharya.links.leadership} target="_blank" rel="noopener noreferrer">
                 bkswbengal.org/leadership
               </a>
@@ -106,22 +107,36 @@ export default function GalleryPage() {
             {mahacharyaVideos.map((video, i) => (
               <Reveal key={video.id} delay={i * 60} className="mahacharya-video">
                 <div className="video-frame">
-                  <iframe
-                    src={video.embedSrc}
-                    title={video.title}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
+                  {video.src ? (
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={video.poster}
+                      title={video.title}
+                    >
+                      <source src={video.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <iframe
+                      src={video.embedSrc}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                  )}
                 </div>
                 <h4>{video.title}</h4>
                 <p>{video.note}</p>
-                <p>
-                  <a href={video.href} target="_blank" rel="noopener noreferrer">
-                    Open on YouTube
-                  </a>
-                </p>
+                {video.href ? (
+                  <p>
+                    <a href={video.href} target="_blank" rel="noopener noreferrer">
+                      Open on YouTube
+                    </a>
+                  </p>
+                ) : null}
               </Reveal>
             ))}
           </div>
@@ -138,8 +153,7 @@ export default function GalleryPage() {
               <a href={mahacharya.links.bksWestBengal} target="_blank" rel="noopener noreferrer">
                 Bharatiya Krishak Samaj — West Bengal
               </a>
-              . More field stills of Mahacharya at plough work can be added when files are
-              attached again as downloads.
+              . Field plough stills and film courtesy of the KY21C plantation campaign record.
             </p>
             <div className="social-row dense">
               {social.map((s) => (
