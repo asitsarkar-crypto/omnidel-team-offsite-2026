@@ -21,6 +21,9 @@ export default function ApplyPrintPage() {
         </p>
         <div className="hero-actions">
           <PrintButton />
+          <a className="btn btn-line dark" href="/api/space-applications/docx?blank=1">
+            Download Word
+          </a>
           <Link className="btn btn-line dark" href="/apply">
             Back to online Apply
           </Link>

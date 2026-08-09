@@ -32,8 +32,11 @@ export default function ApplyPage() {
             <a className="btn btn-solid" href="#apply-form">
               Fill online application
             </a>
+            <a className="btn btn-line" href={spaceApplication.wordPath}>
+              Download Word form
+            </a>
             <Link className="btn btn-line" href={spaceApplication.printPath}>
-              Download / print hard copy
+              Print hard copy
             </Link>
           </div>
         </div>
@@ -64,11 +67,12 @@ export default function ApplyPage() {
       <section className="band muted-band" aria-labelledby="hardcopy-title">
         <div className="wrap apply-split">
           <Reveal>
-            <p className="kicker">Hard copy</p>
-            <h2 id="hardcopy-title">Download, print, sign &amp; send</h2>
+            <p className="kicker">Word + hard copy</p>
+            <h2 id="hardcopy-title">Download Word, sign &amp; return by email</h2>
             <p className="section-deck">
-              Prefer a paper application? Download the formal format, fill it manually, sign it, and send
-              the signed copy with space photographs to our desk.
+              Mahacharyaji’s Apply path: download the official Word application, fill and sign (or print
+              a hard copy), then email the signed file with space photographs to our Plants Donation desk.
+              Online submit also generates the same Word file and stores the application in the system.
             </p>
             <ul className="apply-send-list">
               <li>
@@ -80,21 +84,25 @@ export default function ApplyPage() {
               <li>Office: {contact.office}</li>
             </ul>
             <div className="hero-actions" style={{ marginTop: 18 }}>
-              <Link className="btn btn-solid" href={spaceApplication.printPath}>
-                Open printable form
+              <a className="btn btn-solid" href={spaceApplication.wordPath}>
+                Download Word (.docx)
+              </a>
+              <Link className="btn btn-line dark" href={spaceApplication.printPath}>
+                Printable form
               </Link>
               <a className="btn btn-line dark" href={spaceApplication.downloadPath} download>
-                Download .txt template
+                Download .txt
               </a>
             </div>
           </Reveal>
           <Reveal delay={70} className="note-panel">
-            <p className="kicker">Application format</p>
+            <p className="kicker">System capture</p>
             <h3>{spaceApplication.subjectLine}</h3>
             <p className="lede soft">
-              The form mirrors the official Plants Donation letter: applicant &amp; organisation details,
-              number of locations, addresses, approximate area, plantation capacity, permission, and
-              contact fields — with space for signature and attached photographs.
+              Online applications are saved through the API: <strong>Supabase Postgres database</strong>{' '}
+              when credentials + migration are active; otherwise <strong>JSON memory</strong> (same pledge
+              mode as donations — not durable across server restarts). The Word document is the signing /
+              email-return artifact for desk workflow.
             </p>
           </Reveal>
         </div>
