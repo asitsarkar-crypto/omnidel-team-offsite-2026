@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { branding, links, nav, profile } from '../lib/data';
+import { links, primaryNav, profile } from '../lib/data';
 import { navKeyFromHref } from '../lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from './LanguageProvider';
@@ -28,71 +28,76 @@ export default function SiteNav() {
   return (
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav-inner">
-        <Link className="nav-brand" href="/">
+        <Link className="nav-brand" href="/" aria-label={profile.name}>
           <img
-            className="nav-bks-logo"
-            src={branding.bksLogo}
-            alt={branding.bksLogoAlt}
-            width={44}
-            height={44}
+            className="nav-portrait"
+            src={profile.portrait}
+            alt=""
+            width={72}
+            height={72}
           />
           <span className="nav-brand-text">
             <span className="nav-brand-en">{profile.name}</span>
             <span className="nav-brand-hi">{t.hero.nameLocal}</span>
+            <span className="nav-brand-tag">{t.hero.headerTagline}</span>
           </span>
         </Link>
 
-        <div className="nav-tools">
-          <LanguageSwitcher compact />
-          <button
-            className="nav-toggle"
-            type="button"
-            aria-expanded={open}
-            aria-controls="site-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span />
-            <span />
-            <span />
-            <span className="sr-only">{t.menu}</span>
-          </button>
+        <div className="nav-cluster">
+          <nav id="site-menu" className="nav-links" aria-label="Primary">
+            {primaryNav.map((item) => {
+              const key = navKeyFromHref(item.href) || item.id;
+              const label =
+                item.external
+                  ? t.nav.bksExternal || 'BKS'
+                  : (key && t.nav[key]) || item.label;
+
+              if (item.external) {
+                return (
+                  <a
+                    key={item.id || item.href}
+                    href={item.href || links.bksOfficial}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-external nav-bks"
+                  >
+                    {label}
+                  </a>
+                );
+              }
+
+              const active =
+                item.href === '/'
+                  ? pathname === '/'
+                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
+              return (
+                <Link key={item.href} href={item.href} className={active ? 'is-active' : ''}>
+                  {label}
+                </Link>
+              );
+            })}
+            <div className="nav-lang-mobile">
+              <LanguageSwitcher />
+            </div>
+          </nav>
+
+          <div className="nav-lang-desktop">
+            <LanguageSwitcher compact />
+          </div>
         </div>
 
-        <nav id="site-menu" className="nav-links" aria-label="Primary">
-          {nav.map((item) => {
-            const key = navKeyFromHref(item.href) || item.id;
-            const label =
-              (key && t.nav[key]) ||
-              (item.external ? t.nav.bksExternal || item.label : item.label);
-
-            if (item.external) {
-              return (
-                <a
-                  key={item.id || item.href}
-                  href={item.href || links.bksOfficial}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-external"
-                >
-                  {label}
-                </a>
-              );
-            }
-
-            const active =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname === item.href || pathname.startsWith(`${item.href}/`);
-            return (
-              <Link key={item.href} href={item.href} className={active ? 'is-active' : ''}>
-                {label}
-              </Link>
-            );
-          })}
-          <div className="nav-lang-mobile">
-            <LanguageSwitcher />
-          </div>
-        </nav>
+        <button
+          className="nav-toggle"
+          type="button"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+          <span className="sr-only">{t.menu}</span>
+        </button>
       </div>
     </header>
   );

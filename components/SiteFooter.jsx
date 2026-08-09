@@ -9,7 +9,7 @@ import { useLanguage } from './LanguageProvider';
 
 export default function SiteFooter() {
   const { t } = useLanguage();
-  const internalNav = nav.filter((item) => !item.external).slice(0, 7);
+  const exploreNav = nav.filter((item) => !item.external);
 
   return (
     <footer className="site-footer">
@@ -62,7 +62,7 @@ export default function SiteFooter() {
           <div>
             <p className="footer-label">{t.footer.explore}</p>
             <ul>
-              {internalNav.map((item) => {
+              {exploreNav.map((item) => {
                 const key = navKeyFromHref(item.href);
                 return (
                   <li key={item.href}>
@@ -77,7 +77,7 @@ export default function SiteFooter() {
             <ul>
               <li>
                 <a href={links.bksOfficial} target="_blank" rel="noopener noreferrer">
-                  {t.nav.bksExternal || links.bksOfficialLabel}
+                  {links.bksOfficialLabel}
                 </a>
               </li>
               {orgs.map((o) => (
