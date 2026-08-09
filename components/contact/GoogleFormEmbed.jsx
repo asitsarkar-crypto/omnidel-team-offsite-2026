@@ -40,6 +40,9 @@ export default function GoogleFormEmbed({ title }) {
         <Link className="btn btn-line dark" href="/donate">
           {t.cta.donateNow}
         </Link>
+        <Link className="btn btn-line dark" href="/apply">
+          {t.cta.offerSpace || 'Offer Space'}
+        </Link>
         <a className="btn btn-line dark" href={`mailto:${contact.email}`}>
           {t.contact.email}
         </a>

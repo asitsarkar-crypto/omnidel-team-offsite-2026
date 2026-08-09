@@ -26,6 +26,9 @@ export default function ParticipateChapter() {
             <Link className="btn btn-line" href="/donate">
               {t.cta.donateNow}
             </Link>
+            <Link className="btn btn-line" href="/apply">
+              {t.cta.offerSpace || 'Offer Space'}
+            </Link>
             <Link className="btn btn-line" href="/impact">
               {t.cta.viewImpact}
             </Link>
