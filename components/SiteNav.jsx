@@ -25,79 +25,88 @@ export default function SiteNav() {
     setOpen(false);
   }, [pathname, lang]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   return (
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav-inner">
-        <Link className="nav-brand" href="/" aria-label={profile.name}>
+        <Link className="nav-identity" href="/" aria-label={profile.name}>
           <img
             className="nav-portrait"
             src={profile.portrait}
             alt=""
-            width={72}
-            height={72}
+            width={88}
+            height={88}
           />
-          <span className="nav-brand-text">
+          <span className="nav-identity-text">
             <span className="nav-brand-en">{profile.name}</span>
             <span className="nav-brand-hi">{t.hero.nameLocal}</span>
+            <span className="nav-brand-role">{t.hero.shortTitle}</span>
             <span className="nav-brand-tag">{t.hero.headerTagline}</span>
           </span>
         </Link>
 
-        <div className="nav-cluster">
-          <nav id="site-menu" className="nav-links" aria-label="Primary">
-            {primaryNav.map((item) => {
-              const key = navKeyFromHref(item.href) || item.id;
-              const label =
-                item.external
-                  ? t.nav.bksExternal || 'BKS'
-                  : (key && t.nav[key]) || item.label;
-
-              if (item.external) {
-                return (
-                  <a
-                    key={item.id || item.href}
-                    href={item.href || links.bksOfficial}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="nav-external nav-bks"
-                  >
-                    {label}
-                  </a>
-                );
-              }
-
-              const active =
-                item.href === '/'
-                  ? pathname === '/'
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
-              return (
-                <Link key={item.href} href={item.href} className={active ? 'is-active' : ''}>
-                  {label}
-                </Link>
-              );
-            })}
-            <div className="nav-lang-mobile">
-              <LanguageSwitcher />
-            </div>
-          </nav>
-
-          <div className="nav-lang-desktop">
-            <LanguageSwitcher compact />
+        <nav id="site-menu" className="nav-links" aria-label="Primary">
+          <div className="nav-lang-mobile">
+            <p className="nav-drawer-label">{t.language}</p>
+            <LanguageSwitcher variant="dropdown" />
           </div>
-        </div>
 
-        <button
-          className="nav-toggle"
-          type="button"
-          aria-expanded={open}
-          aria-controls="site-menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span />
-          <span />
-          <span />
-          <span className="sr-only">{t.menu}</span>
-        </button>
+          {primaryNav.map((item) => {
+            const key = navKeyFromHref(item.href) || item.id;
+            const label = item.external
+              ? t.nav.bksExternal || 'BKS'
+              : (key && t.nav[key]) || item.label;
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.id || item.href}
+                  href={item.href || links.bksOfficial}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-external nav-bks"
+                >
+                  {label}
+                </a>
+              );
+            }
+
+            const active =
+              item.href === '/'
+                ? pathname === '/'
+                : pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <Link key={item.href} href={item.href} className={active ? 'is-active' : ''}>
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="nav-aside">
+          <div className="nav-lang-desktop">
+            <LanguageSwitcher variant="dropdown" />
+          </div>
+          <button
+            className="nav-toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls="site-menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+            <span className="sr-only">{t.menu}</span>
+          </button>
+        </div>
       </div>
     </header>
   );

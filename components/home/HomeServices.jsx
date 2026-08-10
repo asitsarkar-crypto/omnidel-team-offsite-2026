@@ -10,7 +10,7 @@ export default function HomeServices() {
   const items = t.services.items;
 
   return (
-    <section id="services" className="band pillars-home scroll-mt-[var(--nav-h)]">
+    <section id="public-work" className="band pillars-home scroll-mt-[var(--nav-h)]">
       <div className="wrap">
         <Reveal className="section-head">
           <p className="kicker">{t.services.kicker}</p>

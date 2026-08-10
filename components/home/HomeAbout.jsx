@@ -40,7 +40,7 @@ export default function HomeAbout() {
             <Link className="btn btn-solid" href="/about">
               {t.cta.fullBio}
             </Link>
-            <a className="text-link" href="#why-us">
+            <a className="text-link" href="#leadership">
               {t.cta.whyHim}
             </a>
           </div>

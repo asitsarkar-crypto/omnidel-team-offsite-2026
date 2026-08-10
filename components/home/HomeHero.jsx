@@ -29,10 +29,7 @@ export default function HomeHero() {
           {t.hero.shortTitle} · {profile.qualifications}
         </p>
         <div className="hero-actions animate-rise delay-4">
-          <a className="btn btn-solid" href="#services">
-            {t.cta.getStarted}
-          </a>
-          <a className="btn btn-line" href="#contact">
+          <a className="btn btn-solid" href="#contact">
             {t.cta.contactUs}
           </a>
           <a
